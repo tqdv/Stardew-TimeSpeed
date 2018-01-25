@@ -1,6 +1,7 @@
 # Release notes
-## 1.4.1
+## 1.5
 * Updated to SMAPI 2.4.
+* Players no longer need to replace `Content/Crops.xnb` (now uses pure SMAPI code).
 * Enabled automatic update checks via SMAPI.
 
 ## 1.4

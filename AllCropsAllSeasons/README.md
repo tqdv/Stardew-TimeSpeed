@@ -13,7 +13,6 @@ Compatible with Stardew Valley 1.11+ on Linux, Mac, and Windows.
 ## Install
 1. [Install the latest version of SMAPI](https://smapi.io).
 2. Install [this mod from Nexus mods](http://www.nexusmods.com/stardewvalley/mods/170).
-3. Replace `Content\Data\Crops.xnb` in your game folder with the included `Content\Data\Crops.xnb` file.
 4. Run the game using SMAPI.
 
 ## Use

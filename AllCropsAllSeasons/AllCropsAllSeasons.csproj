@@ -42,9 +42,6 @@
     <Compile Include="Framework\TileState.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\Data\Crops.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="manifest.json" />
     <None Include="packages.config" />
     <None Include="README.md" />

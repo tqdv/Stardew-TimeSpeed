@@ -12,7 +12,7 @@ using StardewValley.TerrainFeatures;
 namespace AllCropsAllSeasons
 {
     /// <summary>The entry class called by SMAPI.</summary>
-    public class ModEntry : Mod
+    public class ModEntry : Mod, IAssetEditor
     {
         /*********
         ** Properties
@@ -30,6 +30,27 @@ namespace AllCropsAllSeasons
         {
             LocationEvents.CurrentLocationChanged += this.ReceiveCurrentLocationChanged;
             SaveEvents.BeforeSave += this.ReceiveBeforeSave;
+        }
+
+        /// <summary>Get whether this instance can edit the given asset.</summary>
+        /// <param name="asset">Basic metadata about the asset being loaded.</param>
+        public bool CanEdit<T>(IAssetInfo asset)
+        {
+            return asset.AssetNameEquals("Data/Crops");
+        }
+
+        /// <summary>Edit a matched asset.</summary>
+        /// <param name="asset">A helper which encapsulates metadata about an asset and enables changes to it.</param>
+        public void Edit<T>(IAssetData asset)
+        {
+            asset
+                .AsDictionary<int, string>()
+                .Set((id, data) =>
+                {
+                    string[] fields = data.Split('/');
+                    fields[1] = "spring summer fall winter";
+                    return string.Join("/", fields);
+                });
         }
 
 
@@ -50,7 +71,7 @@ namespace AllCropsAllSeasons
                 this.SavedTiles = this.GetCropTiles(Game1.getFarm()).ToArray();
         }
 
-        /// <summary>The method called when the player warps to a new location.</summary>
+        /// <summary>The method called when the game is writing to the save file.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void ReceiveBeforeSave(object sender, EventArgs e)
