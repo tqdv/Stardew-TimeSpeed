@@ -1,14 +1,10 @@
 {
   "Name": "TimeSpeed",
   "Author": "cantorsdust",
-  "Version": {
-    "MajorVersion": 2,
-    "MinorVersion": 2,
-    "PatchVersion": 1,
-    "Build": null
-  },
-  "MinimumApiVersion": "1.14",
+  "Version": "2.2.1",
   "Description": "Lets you control the flow of time in the game: speed it up, slow it down, or freeze it altogether.",
   "UniqueID": "cantorsdust.TimeSpeed",
-  "EntryDll": "TimeSpeed.dll"
+  "EntryDll": "TimeSpeed.dll",
+  "MinimumApiVersion": "2.4",
+  "UpdateKeys": [ "Nexus:169" ]
 }

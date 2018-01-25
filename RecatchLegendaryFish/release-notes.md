@@ -1,4 +1,8 @@
 # Release notes
+## 1.5.1
+* Updated to SMAPI 2.4.
+* Enabled automatic update checks via SMAPI.
+
 ## 1.5
 * Updated for Stardew Valley 1.2.
 
