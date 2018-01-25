@@ -51,7 +51,6 @@
     <None Include="release-notes.md" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LICENSE" />
     <Content Include="screenshot.png" />
     <Content Include="TODO.txt" />
   </ItemGroup>

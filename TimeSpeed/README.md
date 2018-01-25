@@ -2,8 +2,7 @@
 of time in the game: speed it up, slow it down, or freeze it altogether. This can happen
 automatically or when you press a key in the game.
 
-Compatible with Stardew Valley 1.11+ on Linux, Mac, and Windows. Originally written by cantorsdust,
-and now maintained by the community — pull requests are welcome!
+Compatible with Stardew Valley 1.11+ on Linux, Mac, and Windows.
 
 ## Contents
 * [Install](#install)
@@ -12,7 +11,7 @@ and now maintained by the community — pull requests are welcome!
 * [See also](#see-also)
 
 ## Install
-1. [Install the latest version of SMAPI](http://canimod.com/for-players/install-smapi).
+1. [Install the latest version of SMAPI](https://smapi.io).
 2. Install [this mod from Nexus mods](http://www.nexusmods.com/stardewvalley/mods/169).
 3. Run the game using SMAPI.
 

@@ -1,8 +1,7 @@
 ﻿**All Professions** is a [Stardew Valley](http://stardewvalley.net/) mod which gives your farmer
 all possible professions when you level up, instead of just the one chosen.
 
-Compatible with Stardew Valley 1.11+ on Linux, Mac, and Windows. Originally written by cantorsdust,
-and now maintained by the community — pull requests are welcome!
+Compatible with Stardew Valley 1.11+ on Linux, Mac, and Windows.
 
 ## Contents
 * [Install](#install)
@@ -11,7 +10,7 @@ and now maintained by the community — pull requests are welcome!
 * [See also](#see-also)
 
 ## Install
-1. [Install the latest version of SMAPI](http://canimod.com/for-players/install-smapi).
+1. [Install the latest version of SMAPI](https://smapi.io).
 2. Install [this mod from Nexus mods](http://www.nexusmods.com/stardewvalley/mods/174).
 3. Run the game using SMAPI.
 

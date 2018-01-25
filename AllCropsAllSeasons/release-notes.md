@@ -1,4 +1,7 @@
 # Release notes
+## 1.4
+* Updated for Stardew Valley 1.2.
+
 ## 1.3
 * Updated to SMAPI 1.9.
 * Internal refactoring.
