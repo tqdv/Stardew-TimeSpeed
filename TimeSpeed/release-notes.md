@@ -1,7 +1,8 @@
 # Release notes
-## 2.2.2
+## 2.3
 * Updated to SMAPI 2.4.
-* Enabled automatic update checks via SMAPI.
+* Added automatic update checks via SMAPI.
+* Added controller support.
 
 ## 2.2.1
 * Updated to SMAPI 1.14.

@@ -35,7 +35,7 @@ setting | effect
 `EnableOnFestivalDays` | Whether to change tick length on festival days.
 `FreezeTimeAt` | The time at which to freeze time everywhere (or `null` to disable this). This should be 24-hour military time (e.g. 800 for 8am, 1600 for 8pm, etc). (Be careful the number doesn't start with a zero, due to a bug in the underlying parser.)
 `LocationNotify` | Whether to show a message about the time settings when you enter a location.
-`Keys` | The keyboard bindings used to control the flow of time. See [available keys](https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.keys.aspx). Set a key to `null` to disable it.
+`Keys` | The keyboard/controller/mouse bindings used to control the flow of time. See [available keys](https://stardewvalleywiki.com/Modding:Key_bindings#Available_bindings). Set a key to `null` to disable it.
 
 ## Versions
 See [release notes](release-notes.md).
