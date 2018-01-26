@@ -2,7 +2,7 @@
 crops in any season, including winter:
 > ![](screenshot.png)
 
-Compatible with Stardew Valley 1.11+ on Linux, Mac, and Windows.
+Compatible with Stardew Valley 1.2+ on Linux, Mac, and Windows.
 
 ## Contents
 * [Install](#install)

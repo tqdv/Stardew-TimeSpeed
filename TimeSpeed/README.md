@@ -2,7 +2,7 @@
 of time in the game: speed it up, slow it down, or freeze it altogether. This can happen
 automatically or when you press a key in the game.
 
-Compatible with Stardew Valley 1.11+ on Linux, Mac, and Windows.
+Compatible with Stardew Valley 1.2+ on Linux, Mac, and Windows.
 
 ## Contents
 * [Install](#install)

@@ -1,7 +1,7 @@
 ﻿**Instant Grow Trees** is a [Stardew Valley](http://stardewvalley.net/) mod which causes trees to
 grow instantly overnight if they have enough space.
 
-Compatible with Stardew Valley 1.11+ on Linux, Mac, and Windows.
+Compatible with Stardew Valley 1.2+ on Linux, Mac, and Windows.
 
 ## Contents
 * [Install](#install)
