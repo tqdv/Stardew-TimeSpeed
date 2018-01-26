@@ -17,8 +17,8 @@ namespace AllCropsAllSeasons
         /*********
         ** Properties
         *********/
-        /// <summary>The hoed dirt tiles which should be saved for the next day.</summary>
-        private TileState[] SavedTiles = new TileState[0];
+        /// <summary>The crop tiles which should be saved for the next day.</summary>
+        private CropTileState[] SavedCrops = new CropTileState[0];
 
 
         /*********
@@ -68,7 +68,7 @@ namespace AllCropsAllSeasons
             // when player enters farmhouse (including on new day), back up crops in case they're
             // about to end the day
             if (e.NewLocation is FarmHouse)
-                this.SavedTiles = this.GetCropTiles(Game1.getFarm()).ToArray();
+                this.StashCrops();
         }
 
         /// <summary>The method called when the game is writing to the save file.</summary>
@@ -77,22 +77,37 @@ namespace AllCropsAllSeasons
         private void ReceiveBeforeSave(object sender, EventArgs e)
         {
             // before save (but after tomorrow's day updates), fix any crops that died due to the day update
-            this.RestoreCrops(this.SavedTiles);
+            this.RestoreCrops();
         }
 
         /****
         ** Methods
         ****/
-        /// <summary>Restore the temporarily-saved crops.</summary>
-        /// <param name="tiles">The crops to restore.</param>
-        private void RestoreCrops(TileState[] tiles)
+        /// <summary>Take a snapshot of the current crops.</summary>
+        private void StashCrops()
         {
-            if (!tiles.Any())
-                return;
+            Farm farm = Game1.getFarm();
+            this.SavedCrops = this.GetCropTiles(farm).ToArray();
+        }
 
-            GameLocation farm = Game1.getFarm();
+        /// <summary>Restore the temporarily-saved crops.</summary>
+        private void RestoreCrops()
+        {
+            // get data
+            CropTileState[] crops = this.SavedCrops;
+            if (!crops.Any())
+                return;
+            Farm farm = Game1.getFarm();
             GameLocation greenhouse = Game1.getLocationFromName("Greenhouse");
-            foreach (TileState saved in tiles)
+
+            // ignore crops converted into giant crops
+            {
+                HashSet<Vector2> coveredByGiantCrop = new HashSet<Vector2>(this.GetGiantCropTiles(farm));
+                crops = crops.Where(crop => !coveredByGiantCrop.Contains(crop.Tile)).ToArray();
+            }
+
+            // restore crops
+            foreach (CropTileState saved in crops)
             {
                 // get actual tile
                 if (!farm.terrainFeatures.ContainsKey(saved.Tile) || !(farm.terrainFeatures[saved.Tile] is HoeDirt))
@@ -115,7 +130,7 @@ namespace AllCropsAllSeasons
 
         /// <summary>Get all tiles on the farm with a live crop.</summary>
         /// <param name="farm">The farm to search.</param>
-        private IEnumerable<TileState> GetCropTiles(Farm farm)
+        private IEnumerable<CropTileState> GetCropTiles(Farm farm)
         {
             foreach (KeyValuePair<Vector2, TerrainFeature> entry in farm.terrainFeatures)
             {
@@ -123,7 +138,20 @@ namespace AllCropsAllSeasons
                 HoeDirt dirt = entry.Value as HoeDirt;
                 Crop crop = dirt?.crop;
                 if (crop != null && !crop.dead)
-                    yield return new TileState(tile, crop, dirt.state, dirt.fertilizer);
+                    yield return new CropTileState(tile, crop, dirt.state, dirt.fertilizer);
+            }
+        }
+
+        /// <summary>Get all tiles on the farm with a giant crop.</summary>
+        /// <param name="farm">The farm to search.</param>
+        private IEnumerable<Vector2> GetGiantCropTiles(Farm farm)
+        {
+            foreach (GiantCrop giantCrop in farm.resourceClumps.OfType<GiantCrop>())
+            {
+                yield return giantCrop.tile; // top left tile
+                yield return giantCrop.tile + new Vector2(1, 0);
+                yield return giantCrop.tile + new Vector2(0, 1);
+                yield return giantCrop.tile + new Vector2(1, 1);
             }
         }
     }

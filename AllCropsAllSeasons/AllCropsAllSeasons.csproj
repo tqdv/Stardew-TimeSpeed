@@ -39,7 +39,7 @@
     </Compile>
     <Compile Include="ModEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Framework\TileState.cs" />
+    <Compile Include="Framework\CropTileState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="manifest.json" />

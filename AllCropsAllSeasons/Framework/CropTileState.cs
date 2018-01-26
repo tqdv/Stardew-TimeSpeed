@@ -4,7 +4,7 @@ using StardewValley;
 namespace AllCropsAllSeasons.Framework
 {
     /// <summary>Contains metadata for a crop on a tile.</summary>
-    internal class TileState
+    internal class CropTileState
     {
         /*********
         ** Accessors
@@ -30,7 +30,7 @@ namespace AllCropsAllSeasons.Framework
         /// <param name="crop">The crop instance.</param>
         /// <param name="state">The dirt state (one of <see cref="StardewValley.TerrainFeatures.HoeDirt.dry"/> or <see cref="StardewValley.TerrainFeatures.HoeDirt.watered"/>).</param>
         /// <param name="fertilizer">The fertilizer applied to the dirt.</param>
-        public TileState(Vector2 tile, Crop crop, int state, int fertilizer)
+        public CropTileState(Vector2 tile, Crop crop, int state, int fertilizer)
         {
             this.Tile = tile;
             this.Crop = crop;
