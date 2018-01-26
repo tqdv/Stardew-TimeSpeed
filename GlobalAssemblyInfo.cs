@@ -1,4 +1,4 @@
 using System.Reflection;
 
-[assembly: AssemblyProduct("StardewCommunityMods")]
+[assembly: AssemblyProduct("StardewMods")]
 [assembly: AssemblyCopyright("Copyright © cantorsdust 2017")]
