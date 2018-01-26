@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using StardewValley;
+using StardewValley.Locations;
 
 namespace TimeSpeed.Framework
 {
@@ -14,13 +15,13 @@ namespace TimeSpeed.Framework
         /// <summary>The default number of seconds per 10-game-minutes, or <c>null</c> to freeze time globally. The game uses 7 seconds by default.</summary>
         public double? DefaultTickLength { get; set; } = 14.0;
 
-        /// <summary>The number of seconds per 10-game-minutes (or <c>null</c> to freeze time) for each location. The key can be a location name or <see cref="LocationType"/>.</summary>
-        /// <remarks>Most location names can be found at "\Stardew Valley\Content\Maps" directory. They usually match the file name without its extension.</remarks>
+        /// <summary>The number of seconds per 10-game-minutes (or <c>null</c> to freeze time) for each location. The key can be a location name, 'Mine', or <see cref="LocationType"/>.</summary>
+        /// <remarks>Most location names can be found at "\Stardew Valley\Content\Maps" directory. They usually match the file name without its extension. 'Mine' is a special case which includes all mine maps.</remarks>
         /// <example>
         /// This will set the Mines and Skull Cavern to 28 seconds per 10-game-minutes, freeze time indoors and use <see cref="DefaultTickLength"/> for outdoors:
         /// <code>
         /// "TickLengthByLocation": {
-        ///     "UndergroundMine": 28,
+        ///     "Mine": 28,
         ///     "Indoors": null
         /// }
         /// </code>
@@ -43,8 +44,9 @@ namespace TimeSpeed.Framework
         /// </example>
         public Dictionary<string, double?> TickLengthByLocation { get; set; } = new Dictionary<string, double?>
         {
-            { LocationType.Indoors.ToString(), 14.0 },
-            { LocationType.Outdoors.ToString(), 14.0 },
+            { LocationType.Indoors.ToString(), 14 },
+            { LocationType.Outdoors.ToString(), 14 },
+            { "Mine", 14 }
         };
 
         /// <summary>Whether to change tick length on festival days.</summary>
@@ -108,14 +110,18 @@ namespace TimeSpeed.Framework
         /// <param name="location">The game location.</param>
         private double? GetTickLengthOrFreeze(GameLocation location)
         {
-            double? tickLength;
-            bool specified = this.TickLengthByLocation.TryGetValue(location.Name, out tickLength)
-                || (location.IsOutdoors && this.TickLengthByLocation.TryGetValue(LocationType.Outdoors.ToString(), out tickLength))
-                || (!location.IsOutdoors && this.TickLengthByLocation.TryGetValue(LocationType.Indoors.ToString(), out tickLength));
+            // check by location name
+            if (this.TickLengthByLocation.TryGetValue(location.Name, out double? tickLength))
+                return tickLength;
+            if (location is MineShaft && this.TickLengthByLocation.TryGetValue("Mine", out tickLength))
+                return tickLength;
 
-            return specified
-                ? tickLength
-                : this.DefaultTickLength;
+            // check by location type
+            if (this.TickLengthByLocation.TryGetValue((location.IsOutdoors ? LocationType.Outdoors : LocationType.Indoors).ToString(), out tickLength))
+                return tickLength;
+
+            // default
+            return this.DefaultTickLength;
         }
     }
 }

@@ -3,6 +3,7 @@
 * Updated to SMAPI 2.4.
 * Added automatic update checks via SMAPI.
 * Added controller support.
+* Added `Mine` as an option in per-location settings.
 
 ## 2.2.1
 * Updated to SMAPI 1.14.
