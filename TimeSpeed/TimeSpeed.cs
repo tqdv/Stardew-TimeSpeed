@@ -57,14 +57,14 @@ namespace TimeSpeed
         public override void Entry(IModHelper helper)
         {
             // read config
-            Config = helper.ReadConfig<TimeSpeedConfig>();
+            this.Config = helper.ReadConfig<TimeSpeedConfig>();
 
             // add time events
             this.TimeHelper.WhenTickProgressChanged(this.ReceiveTickProgress);
-            ControlEvents.KeyPressed += this.ReceiveKeyPressed;
-            LocationEvents.CurrentLocationChanged += this.ReceiveCurrentLocationChanged;
-            TimeEvents.TimeOfDayChanged += this.ReceiveTimeOfDayChanged;
-            TimeEvents.AfterDayStarted += this.ReceiveDayStarted;
+            InputEvents.ButtonPressed += this.InputEvents_ButtonPressed;
+            LocationEvents.CurrentLocationChanged += this.LocationEvents_CurrentLocationChanged;
+            TimeEvents.TimeOfDayChanged += this.TimeEvents_TimeOfDayChanged;
+            TimeEvents.AfterDayStarted += this.TimeEvents_AfterDayStarted;
 
             // add time freeze/unfreeze notification
             {
@@ -89,16 +89,15 @@ namespace TimeSpeed
         /****
         ** Event handlers
         ****/
-        /// <summary>The method called when the player presses a keyboard button.</summary>
+        /// <summary>The method called when the player presses a button.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void ReceiveKeyPressed(object sender, EventArgsKeyPressed e)
+        private void InputEvents_ButtonPressed(object sender, EventArgsInput e)
         {
-            if (!Game1.hasLoadedGame || Game1.activeClickableMenu != null)
+            if (!Context.IsPlayerFree)
                 return;
 
-            var key = e.KeyPressed;
-
+            SButton key = e.Button;
             if (key == this.Config.Keys.FreezeTime)
                 this.ToogleFreeze();
             else if (key == this.Config.Keys.IncreaseTickInterval || key == this.Config.Keys.DecreaseTickInterval)
@@ -110,7 +109,7 @@ namespace TimeSpeed
         /// <summary>The method called when the player moves to a new location.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void ReceiveCurrentLocationChanged(object sender, EventArgsCurrentLocationChanged e)
+        private void LocationEvents_CurrentLocationChanged(object sender, EventArgsCurrentLocationChanged e)
         {
             this.UpdateSettingsForLocation(Game1.currentLocation);
         }
@@ -118,7 +117,7 @@ namespace TimeSpeed
         /// <summary>The method called when the time of day changes.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void ReceiveTimeOfDayChanged(object sender, EventArgsIntChanged e)
+        private void TimeEvents_TimeOfDayChanged(object sender, EventArgsIntChanged e)
         {
             this.UpdateFreezeForTime(Game1.timeOfDay);
         }
@@ -126,7 +125,7 @@ namespace TimeSpeed
         /// <summary>The method called when the day changes.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void ReceiveDayStarted(object sender, EventArgs e)
+        private void TimeEvents_AfterDayStarted(object sender, EventArgs e)
         {
             this.UpdateScaleForDay(Game1.currentSeason, Game1.dayOfMonth);
         }

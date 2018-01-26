@@ -1,4 +1,8 @@
 # Release notes
+## 1.2.2
+* Updated to SMAPI 2.4.
+* Added automatic update checks via SMAPI.
+
 ## 1.2.1
 * Fixed progress not being saved correctly.
 

@@ -1,7 +1,7 @@
 ﻿**All Professions** is a [Stardew Valley](http://stardewvalley.net/) mod which gives your farmer
 all possible professions when you level up, instead of just the one chosen.
 
-Compatible with Stardew Valley 1.11+ on Linux, Mac, and Windows.
+Compatible with Stardew Valley 1.2+ on Linux, Mac, and Windows.
 
 ## Contents
 * [Install](#install)

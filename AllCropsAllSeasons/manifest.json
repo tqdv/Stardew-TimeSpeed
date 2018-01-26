@@ -1,14 +1,10 @@
 ﻿{
   "Name": "All Crops All Seasons",
   "Author": "cantorsdust",
-  "Version": {
-    "MajorVersion": 1,
-    "MinorVersion": 4,
-    "PatchVersion": 0,
-    "Build": null
-  },
-  "MinimumApiVersion": "1.10",
+  "Version": "1.5.0",
   "Description": "Allows crops to be planted and grown during any season.",
   "UniqueID": "cantorsdust.AllCropsAllSeasons",
-  "EntryDll": "AllCropsAllSeasons.dll"
+  "EntryDll": "AllCropsAllSeasons.dll",
+  "MinimumApiVersion": "2.4",
+  "UpdateKeys": [ "Nexus:170" ]
 }
