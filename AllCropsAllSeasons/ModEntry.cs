@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AllCropsAllSeasons.Framework;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -36,21 +37,31 @@ namespace AllCropsAllSeasons
         /// <param name="asset">Basic metadata about the asset being loaded.</param>
         public bool CanEdit<T>(IAssetInfo asset)
         {
-            return asset.AssetNameEquals("Data/Crops");
+            return
+                asset.AssetNameEquals("Data/Crops") // change crop seasons
+                || asset.AssetNameEquals("TerrainFeatures/hoeDirtSnow"); // change dirt texture
         }
 
         /// <summary>Edit a matched asset.</summary>
         /// <param name="asset">A helper which encapsulates metadata about an asset and enables changes to it.</param>
         public void Edit<T>(IAssetData asset)
         {
-            asset
-                .AsDictionary<int, string>()
-                .Set((id, data) =>
-                {
-                    string[] fields = data.Split('/');
-                    fields[1] = "spring summer fall winter";
-                    return string.Join("/", fields);
-                });
+            // change crop seasons
+            if (asset.AssetNameEquals("Data/Crops"))
+            {
+                asset
+                    .AsDictionary<int, string>()
+                    .Set((id, data) =>
+                    {
+                        string[] fields = data.Split('/');
+                        fields[1] = "spring summer fall winter";
+                        return string.Join("/", fields);
+                    });
+            }
+
+            // change dirt texture
+            else if (asset.AssetNameEquals("TerrainFeatures/hoeDirtSnow"))
+                asset.ReplaceWith(this.Helper.Content.Load<Texture2D>("TerrainFeatures/hoeDirt", ContentSource.GameContent));
         }
 
 

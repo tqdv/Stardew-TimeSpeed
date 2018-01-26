@@ -3,7 +3,8 @@
 * Updated to SMAPI 2.4.
 * Added automatic update checks via SMAPI.
 * Migrated to pure SMAPI mod (players no longer need to replace `Content/Crops.xnb`).
-* Fixed issue where giant crops don't remove original crops.
+* Fixed giant crops not removing original crops.
+* Fixed winter dirt not showing whether it's watered.
 
 ## 1.4
 * Updated for Stardew Valley 1.2.
