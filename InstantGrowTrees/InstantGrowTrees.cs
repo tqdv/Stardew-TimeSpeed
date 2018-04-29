@@ -17,6 +17,10 @@ namespace InstantGrowTrees
         /// <summary>The mod configuration.</summary>
         private ModConfig Config;
 
+        /// <summary>The number of days after a tree is fully grown until it reaches iridium quality.</summary>
+        /// <remarks>Fruit trees increase in quality once per year, so iridium is 30 days * 4 seasons * 3 quality increases.</remarks>
+        private const int FruitTreeIridiumDays = 360;
+
 
         /*********
         ** Public methods
@@ -127,7 +131,9 @@ namespace InstantGrowTrees
             }
 
             // grow tree
-            tree.daysUntilMature.Value = 0;
+            tree.daysUntilMature.Value = this.Config.FruitTreesInstantAge
+                ? -ModEntry.FruitTreeIridiumDays
+                : 0;
             tree.growthStage.Value = FruitTree.treeStage;
         }
     }

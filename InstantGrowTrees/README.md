@@ -19,10 +19,11 @@ will grow instantly overnight.
 The mod creates a `config.json` file the first time you run it. You can open the file in a text
 editor to configure the mod:
 
-setting | effect
-:------ | :-----
-`FruitTreesInstantGrowth` | Whether fruit trees grow instantly overnight. Default `false`.
-`RegularTreesInstantGrow` | Whether non-fruit trees grow instantly overnight. Default `true`.
+setting                    | effect
+:------------------------- | :-----
+`FruitTreesInstantGrowth`  | Whether fruit trees grow instantly overnight. Default `false`.
+`FruitTreesInstantAge`     | Whether fruit trees age instantly to iridium quality overnight. Default `false`.
+`RegularTreesInstantGrow`  | Whether non-fruit trees grow instantly overnight. Default `true`.
 `RegularTreesGrowInWinter` | Whether non-fruit trees grow instantly in winter. Default `false`.
 
 ## Compatibility

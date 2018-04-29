@@ -1,6 +1,7 @@
 # Release notes
 ## 1.4
 * Updated to Stardew Valley 1.3 (including multiplayer).
+* Added option to instantly age fruit trees to iridium quality (disabled by default).
 
 ## 1.3.1
 * Updated to SMAPI 2.4.
