@@ -1,6 +1,9 @@
 ﻿**Recatch Legendary Fish** is a [Stardew Valley](http://stardewvalley.net/) mod which lets you
 catch legendary fish again and again.
 
+![](screenshots/fishing.png)
+![](screenshots/fish-stats.png)
+
 ## Contents
 * [Install](#install)
 * [Use](#use)
