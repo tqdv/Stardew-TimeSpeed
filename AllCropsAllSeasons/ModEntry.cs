@@ -126,14 +126,14 @@ namespace AllCropsAllSeasons
                 HoeDirt dirt = (HoeDirt)farm.terrainFeatures[saved.Tile];
 
                 // reset crop tile if needed
-                if (dirt.crop == null || dirt.crop.dead)
+                if (dirt.crop == null || dirt.crop.dead.Value)
                 {
                     // reset values changed by day update
-                    if (dirt.state != HoeDirt.watered)
-                        dirt.state = saved.State;
-                    dirt.fertilizer = saved.Fertilizer;
+                    if (dirt.state.Value != HoeDirt.watered)
+                        dirt.state.Value = saved.State;
+                    dirt.fertilizer.Value = saved.Fertilizer;
                     dirt.crop = saved.Crop;
-                    dirt.crop.dead = false;
+                    dirt.crop.dead.Value = false;
                     dirt.dayUpdate(greenhouse, saved.Tile);
                 }
             }
@@ -143,13 +143,13 @@ namespace AllCropsAllSeasons
         /// <param name="farm">The farm to search.</param>
         private IEnumerable<CropTileState> GetCropTiles(Farm farm)
         {
-            foreach (KeyValuePair<Vector2, TerrainFeature> entry in farm.terrainFeatures)
+            foreach (KeyValuePair<Vector2, TerrainFeature> entry in farm.terrainFeatures.Pairs)
             {
                 Vector2 tile = entry.Key;
                 HoeDirt dirt = entry.Value as HoeDirt;
                 Crop crop = dirt?.crop;
-                if (crop != null && !crop.dead)
-                    yield return new CropTileState(tile, crop, dirt.state, dirt.fertilizer);
+                if (crop != null && !crop.dead.Value)
+                    yield return new CropTileState(tile, crop, dirt.state.Value, dirt.fertilizer.Value);
             }
         }
 
@@ -159,10 +159,12 @@ namespace AllCropsAllSeasons
         {
             foreach (GiantCrop giantCrop in farm.resourceClumps.OfType<GiantCrop>())
             {
-                yield return giantCrop.tile; // top left tile
-                yield return giantCrop.tile + new Vector2(1, 0);
-                yield return giantCrop.tile + new Vector2(0, 1);
-                yield return giantCrop.tile + new Vector2(1, 1);
+                Vector2 tile = giantCrop.tile.Value;
+                
+                yield return tile; // top left tile
+                yield return tile + new Vector2(1, 0);
+                yield return tile + new Vector2(0, 1);
+                yield return tile + new Vector2(1, 1);
             }
         }
     }

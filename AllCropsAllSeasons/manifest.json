@@ -5,6 +5,6 @@
   "Description": "Allows crops to be planted and grown during any season.",
   "UniqueID": "cantorsdust.AllCropsAllSeasons",
   "EntryDll": "AllCropsAllSeasons.dll",
-  "MinimumApiVersion": "2.4",
+  "MinimumApiVersion": "2.6-beta",
   "UpdateKeys": [ "Nexus:170" ]
 }

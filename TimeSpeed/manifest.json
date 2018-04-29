@@ -5,6 +5,6 @@
   "Description": "Lets you control the flow of time in the game: speed it up, slow it down, or freeze it altogether.",
   "UniqueID": "cantorsdust.TimeSpeed",
   "EntryDll": "TimeSpeed.dll",
-  "MinimumApiVersion": "2.4",
+  "MinimumApiVersion": "2.6-beta",
   "UpdateKeys": [ "Nexus:169" ]
 }

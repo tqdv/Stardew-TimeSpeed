@@ -2,17 +2,15 @@
 in the Skull Cave every 5th floor (configurable). When you return, it will warp you to the saved
 level.
 
-Compatible with Stardew Valley 1.2+ on Linux, Mac, and Windows.
-
 ## Contents
 * [Install](#install)
 * [Use](#use)
-* [Versions](#versions)
+* [Compatibility](#compatibility)
 * [See also](#see-also)
 
 ## Install
 1. [Install the latest version of SMAPI](https://smapi.io).
-2. Install [this mod from Nexus mods](http://www.nexusmods.com/stardewvalley/mods/175).
+2. Install [this mod from Nexus mods](https://www.nexusmods.com/stardewvalley/mods/175).
 3. Run the game using SMAPI.
 
 ## Use
@@ -27,9 +25,12 @@ setting | effect
 `SaveLevelEveryXFloors` | The multiple of floors at which to save (e.g. `5` to save every fifth floor).
 `LastMineLevel` | The last saved Skull Cave floor. This is updated automatically, but you can set it manually to skip to that floor.
 
-## Versions
-See [release notes](release-notes.md).
+## Compatibility
+* Works with Stardew Valley 1.3 beta on Linux/Mac/Windows.
+* Works in single-player and multiplayer.
+* No known mod conflicts.
 
 ## See also
-* [Nexus mod](http://www.nexusmods.com/stardewvalley/mods/175)
-* [Discussion thread](http://community.playstarbound.com/threads/smapi-skullcavesaver.111429/)
+* [Release notes](release-notes.md)
+* [Nexus mod](https://www.nexusmods.com/stardewvalley/mods/175)
+* [Discussion thread](https://community.playstarbound.com/threads/smapi-skullcavesaver.111429/)

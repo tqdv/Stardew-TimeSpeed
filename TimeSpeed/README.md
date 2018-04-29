@@ -12,7 +12,7 @@ Compatible with Stardew Valley 1.2+ on Linux, Mac, and Windows.
 
 ## Install
 1. [Install the latest version of SMAPI](https://smapi.io).
-2. Install [this mod from Nexus mods](http://www.nexusmods.com/stardewvalley/mods/169).
+2. Install [this mod from Nexus mods](https://www.nexusmods.com/stardewvalley/mods/169).
 3. Run the game using SMAPI.
 
 ## Use
@@ -37,9 +37,12 @@ setting | effect
 `LocationNotify` | Whether to show a message about the time settings when you enter a location.
 `Keys` | The keyboard/controller/mouse bindings used to control the flow of time. See [available keys](https://stardewvalleywiki.com/Modding:Key_bindings#Available_bindings). Set a key to `null` to disable it.
 
-## Versions
-See [release notes](release-notes.md).
+## Compatibility
+* Works with Stardew Valley 1.3 beta on Linux/Mac/Windows.
+* Works in single-player, and in multiplayer if you're the main player. (The mod will disable itself if you're not the main player, so it's safe to keep installed.)
+* No known mod conflicts.
 
 ## See also
-* [Nexus mod](http://www.nexusmods.com/stardewvalley/mods/169)
-* [Discussion thread](http://community.playstarbound.com/threads/storm-and-smapi-timespeed-mod-configurable-day-lengths.107876/)
+* [Release notes](release-notes.md)
+* [Nexus mod](https://www.nexusmods.com/stardewvalley/mods/169)
+* [Discussion thread](https://community.playstarbound.com/threads/storm-and-smapi-timespeed-mod-configurable-day-lengths.107876/)

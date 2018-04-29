@@ -1,4 +1,7 @@
 # Release notes
+## 1.6
+* Updated to Stardew Valley 1.3 (including multiplayer).
+
 ## 1.5
 * Updated to SMAPI 2.4.
 * Added automatic update checks via SMAPI.
