@@ -7,7 +7,7 @@ namespace InstantGrowTrees
         ** Accessors
         *********/
         /// <summary>Whether fruit trees grow instantly overnight.</summary>
-        public bool FruitTreesInstantGrow { get; set; }
+        public bool FruitTreesInstantGrow { get; set; } = true;
 
         /// <summary>Whether fruit trees instantly age to iridium quality.</summary>
         public bool FruitTreesInstantAge { get; set; } = false;

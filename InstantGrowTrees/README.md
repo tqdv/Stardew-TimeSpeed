@@ -21,7 +21,7 @@ editor to configure the mod:
 
 setting                    | effect
 :------------------------- | :-----
-`FruitTreesInstantGrowth`  | Whether fruit trees grow instantly overnight. Default `false`.
+`FruitTreesInstantGrowth`  | Whether fruit trees grow instantly overnight. Default `true`.
 `FruitTreesInstantAge`     | Whether fruit trees age instantly to iridium quality overnight. Default `false`.
 `RegularTreesInstantGrow`  | Whether non-fruit trees grow instantly overnight. Default `true`.
 `RegularTreesGrowInWinter` | Whether non-fruit trees grow instantly in winter. Default `false`.
