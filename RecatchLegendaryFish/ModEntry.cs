@@ -8,7 +8,7 @@ using StardewValley.Tools;
 namespace RecatchLegendaryFish
 {
     /// <summary>The entry class called by SMAPI.</summary>
-    public class ModEntry : Mod
+    internal class ModEntry : Mod
     {
         /*********
         ** Properties

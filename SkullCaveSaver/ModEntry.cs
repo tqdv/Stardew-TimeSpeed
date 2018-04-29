@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using SkullCaveSaver.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -8,7 +9,7 @@ using StardewValley.Locations;
 namespace SkullCaveSaver
 {
     /// <summary>The entry class called by SMAPI.</summary>
-    public class ModEntry : Mod
+    internal class ModEntry : Mod
     {
         /*********
         ** Properties

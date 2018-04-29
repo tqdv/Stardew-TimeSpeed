@@ -1,4 +1,4 @@
-namespace InstantGrowTrees
+namespace InstantGrowTrees.Framework
 {
     /// <summary>The mod configuration model.</summary>
     internal class ModConfig

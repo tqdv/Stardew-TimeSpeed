@@ -1,26 +1,26 @@
-﻿using SFarmer = StardewValley.Farmer;
+﻿using StardewValley;
 
-namespace AllProfessions
+namespace AllProfessions.Framework
 {
     /// <summary>Represents the player skill types.</summary>
-    public enum Skill
+    internal enum Skill
     {
         /// <summary>The farming skill.</summary>
-        Farming = SFarmer.farmingSkill,
+        Farming = Farmer.farmingSkill,
 
         /// <summary>The fishing skill.</summary>
-        Fishing = SFarmer.fishingSkill,
+        Fishing = Farmer.fishingSkill,
 
         /// <summary>The foraging skill.</summary>
-        Foraging = SFarmer.foragingSkill,
+        Foraging = Farmer.foragingSkill,
 
         /// <summary>The mining skill.</summary>
-        Mining = SFarmer.miningSkill,
+        Mining = Farmer.miningSkill,
 
         /// <summary>The combat skill.</summary>
-        Combat = SFarmer.combatSkill,
+        Combat = Farmer.combatSkill,
 
         /// <summary>The (disabled) luck skill.</summary>
-        Luck = SFarmer.luckSkill
+        Luck = Farmer.luckSkill
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using InstantGrowTrees.Framework;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -9,7 +10,7 @@ using StardewValley.TerrainFeatures;
 namespace InstantGrowTrees
 {
     /// <summary>The entry class called by SMAPI.</summary>
-    public class ModEntry : Mod
+    internal class ModEntry : Mod
     {
         /*********
         ** Properties

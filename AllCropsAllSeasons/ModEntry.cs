@@ -13,7 +13,7 @@ using StardewValley.TerrainFeatures;
 namespace AllCropsAllSeasons
 {
     /// <summary>The entry class called by SMAPI.</summary>
-    public class ModEntry : Mod, IAssetEditor
+    internal class ModEntry : Mod, IAssetEditor
     {
         /*********
         ** Properties

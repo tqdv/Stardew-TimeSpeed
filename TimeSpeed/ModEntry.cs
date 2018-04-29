@@ -8,7 +8,7 @@ using TimeSpeed.Framework;
 namespace TimeSpeed
 {
     /// <summary>The entry class called by SMAPI.</summary>
-    public sealed class TimeSpeed : Mod
+    internal class ModEntry : Mod
     {
         /*********
         ** Properties
