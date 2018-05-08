@@ -65,7 +65,7 @@ namespace TimeSpeed
             // add time events
             this.TimeHelper.WhenTickProgressChanged(this.ReceiveTickProgress);
             InputEvents.ButtonPressed += this.InputEvents_ButtonPressed;
-            LocationEvents.CurrentLocationChanged += this.LocationEvents_CurrentLocationChanged;
+            PlayerEvents.Warped += this.PlayerEvents_Warped;
             SaveEvents.AfterLoad += SaveEvents_AfterLoad;
             TimeEvents.TimeOfDayChanged += this.TimeEvents_TimeOfDayChanged;
             TimeEvents.AfterDayStarted += this.TimeEvents_AfterDayStarted;
@@ -133,7 +133,7 @@ namespace TimeSpeed
         /// <summary>The method called when the player moves to a new location.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void LocationEvents_CurrentLocationChanged(object sender, EventArgsCurrentLocationChanged e)
+        private void PlayerEvents_Warped(object sender, EventArgsPlayerWarped e)
         {
             if (!this.ShouldEnable)
                 return;
