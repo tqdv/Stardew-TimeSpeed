@@ -29,8 +29,8 @@ namespace AllCropsAllSeasons
         /// <param name="helper">Provides simplified APIs for writing mods.</param>
         public override void Entry(IModHelper helper)
         {
-            LocationEvents.CurrentLocationChanged += this.ReceiveCurrentLocationChanged;
-            SaveEvents.BeforeSave += this.ReceiveBeforeSave;
+            PlayerEvents.Warped += this.PlayerEvents_Warped;
+            SaveEvents.BeforeSave += this.SaveEvents_BeforeSave;
         }
 
         /// <summary>Get whether this instance can edit the given asset.</summary>
@@ -74,7 +74,7 @@ namespace AllCropsAllSeasons
         /// <summary>The method called when the player warps to a new location.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void ReceiveCurrentLocationChanged(object sender, EventArgsCurrentLocationChanged e)
+        private void PlayerEvents_Warped(object sender, EventArgsPlayerWarped e)
         {
             // when player enters farmhouse (including on new day), back up crops in case they're
             // about to end the day
@@ -85,7 +85,7 @@ namespace AllCropsAllSeasons
         /// <summary>The method called when the game is writing to the save file.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void ReceiveBeforeSave(object sender, EventArgs e)
+        private void SaveEvents_BeforeSave(object sender, EventArgs e)
         {
             // before save (but after tomorrow's day updates), fix any crops that died due to the day update
             this.RestoreCrops();

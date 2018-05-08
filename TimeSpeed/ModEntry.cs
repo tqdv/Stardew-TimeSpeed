@@ -138,7 +138,7 @@ namespace TimeSpeed
             if (!this.ShouldEnable)
                 return;
 
-            this.UpdateSettingsForLocation(Game1.currentLocation);
+            this.UpdateSettingsForLocation(e.NewLocation);
         }
 
         /// <summary>The method called when the time of day changes.</summary>
@@ -256,7 +256,7 @@ namespace TimeSpeed
             // update time settings
             this.FrozenAtLocation = this.FrozenGlobally || this.Config.ShouldFreeze(location);
             if (this.Config.GetTickInterval(location) != null)
-                this.TickInterval = this.Config.GetTickInterval(Game1.currentLocation) ?? this.TickInterval;
+                this.TickInterval = this.Config.GetTickInterval(location) ?? this.TickInterval;
 
             // notify player
             if (this.Config.LocationNotify)
