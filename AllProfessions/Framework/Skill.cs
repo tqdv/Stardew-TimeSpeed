@@ -2,7 +2,7 @@
 
 namespace AllProfessions.Framework
 {
-    /// <summary>Represents the player skill types.</summary>
+    /// <summary>A player skill type.</summary>
     internal enum Skill
     {
         /// <summary>The farming skill.</summary>

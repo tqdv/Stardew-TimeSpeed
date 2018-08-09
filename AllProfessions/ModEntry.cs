@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using AllProfessions.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -14,20 +16,11 @@ namespace AllProfessions
         /*********
         ** Properties
         *********/
+        /// <summary>The MD5 hash of the data.json, used to detect when the file is edited.</summary>
+        private readonly string DataFileHash = "a3b6882bf1d9026055423b73cbe05e50";
+
         /// <summary>Professions to gain for each level. Each entry represents the skill, level requirement, and profession IDs.</summary>
-        private readonly Tuple<Skill, int, int[]>[] ProfessionsToGain =
-        {
-            Tuple.Create(Skill.Farming, 5, new[] { Farmer.rancher, Farmer.tiller }),
-            Tuple.Create(Skill.Farming, 10, new[] { Farmer.butcher/*actually coopmaster*/, Farmer.shepherd, Farmer.artisan, Farmer.agriculturist }),
-            Tuple.Create(Skill.Fishing, 5, new[] { Farmer.fisher, Farmer.trapper }),
-            Tuple.Create(Skill.Fishing, 10, new[] { Farmer.angler, Farmer.pirate, Farmer.baitmaster, Farmer.mariner }),
-            Tuple.Create(Skill.Foraging, 5, new[] { Farmer.forester, Farmer.gatherer }),
-            Tuple.Create(Skill.Foraging, 10, new[] { Farmer.lumberjack, Farmer.tapper, Farmer.botanist, Farmer.tracker }),
-            Tuple.Create(Skill.Mining, 5, new[] { Farmer.miner, Farmer.geologist }),
-            Tuple.Create(Skill.Mining, 10, new[] { Farmer.blacksmith, Farmer.burrower/*actually prospector*/, Farmer.excavator, Farmer.gemologist }),
-            Tuple.Create(Skill.Combat, 5, new[] { Farmer.fighter, Farmer.scout }),
-            Tuple.Create(Skill.Combat, 10, new[] { Farmer.brute, Farmer.defender, Farmer.acrobat, Farmer.desperado })
-        };
+        private ModDataProfessions[] ProfessionsToGain;
 
 
         /*********
@@ -37,6 +30,24 @@ namespace AllProfessions
         /// <param name="helper">Provides simplified APIs for writing mods.</param>
         public override void Entry(IModHelper helper)
         {
+            // read data
+            this.ProfessionsToGain = this.GetProfessionsToGain(this.Helper.ReadJsonFile<ModData>("data.json")).ToArray();
+            if (!this.ProfessionsToGain.Any())
+            {
+                this.Monitor.Log("The data.json file is missing or invalid; try reinstalling the mod.", LogLevel.Error);
+                return;
+            }
+
+            // log if data.json is customised
+            string dataPath = Path.Combine(this.Helper.DirectoryPath, "data.json");
+            if (File.Exists(dataPath))
+            {
+                string hash = this.GetFileHash(dataPath);
+                if (hash != this.DataFileHash)
+                    this.Monitor.Log($"Using a custom data.json file (MD5 hash: {hash}).", LogLevel.Trace);
+            }
+
+            // hook event
             TimeEvents.AfterDayStarted += this.ReceiveAfterDayStarted;
         }
 
@@ -60,23 +71,45 @@ namespace AllProfessions
         /****
         ** Methods
         ****/
+        /// <summary>Get the MD5 hash for a file.</summary>
+        /// <param name="absolutePath">The absolute file path.</param>
+        private string GetFileHash(string absolutePath)
+        {
+            using (FileStream stream = File.OpenRead(absolutePath))
+            using (MD5 md5 = MD5.Create())
+            {
+                var hash = md5.ComputeHash(stream);
+                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+            }
+        }
+
+        /// <summary>Get the profession levels to gain for each skill level.</summary>
+        /// <param name="data">The underlying mod data.</param>
+        private IEnumerable<ModDataProfessions> GetProfessionsToGain(ModData data)
+        {
+            if (data?.ProfessionsToGain == null)
+                yield break;
+
+            foreach (ModDataProfessions set in data.ProfessionsToGain)
+            {
+                if (set.Professions != null && set.Professions.Any())
+                    yield return set;
+            }
+        }
+
         /// <summary>Add all missing professions.</summary>
         private void AddMissingProfessions()
         {
             // get missing professions
-            List<int> expectedProfessions = new List<int>();
-            foreach (var entry in this.ProfessionsToGain)
+            List<Profession> expectedProfessions = new List<Profession>();
+            foreach (ModDataProfessions entry in this.ProfessionsToGain)
             {
-                Skill skill = entry.Item1;
-                int level = entry.Item2;
-                int[] professions = entry.Item3;
-
-                if (Game1.player.getEffectiveSkillLevel((int)skill) >= level)
-                    expectedProfessions.AddRange(professions);
+                if (Game1.player.getEffectiveSkillLevel((int)entry.Skill) >= entry.Level)
+                    expectedProfessions.AddRange(entry.Professions);
             }
 
             // add professions
-            foreach (int professionID in expectedProfessions.Distinct().Except(Game1.player.professions))
+            foreach (int professionID in expectedProfessions.Select(p => (int)p).Distinct().Except(Game1.player.professions))
             {
                 // add profession
                 Game1.player.professions.Add(professionID);
