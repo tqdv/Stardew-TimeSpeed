@@ -4,7 +4,7 @@
 * [All Professions](AllProfessions) ([Nexus](http://www.nexusmods.com/stardewvalley/mods/174))
 * [Instant Grow Trees](InstantGrowTrees) ([Nexus](http://www.nexusmods.com/stardewvalley/mods/173))
 * [Recatch Legendary Fish](RecatchLegendaryFish) ([Nexus](http://www.nexusmods.com/stardewvalley/mods/172))
-* [Skull Cave Saver](SkullCaveSaver) ([Nexus](http://www.nexusmods.com/stardewvalley/mods/175))
+* ~~[Skull Cave Saver](_archived/SkullCaveSaver)~~ (archived)
 * [TimeSpeed](TimeSpeed) ([Nexus](http://www.nexusmods.com/stardewvalley/mods/169))
 
 ## Compiling the mods
