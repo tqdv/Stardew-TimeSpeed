@@ -19,7 +19,7 @@ and your crops will be saved each night. This mod does _not_ change store invent
 only buy crop seeds during their usual seasons.
 
 ## Compatibility
-* Works with Stardew Valley 1.3 beta on Linux/Mac/Windows.
+* Works with Stardew Valley 1.3 on Linux/Mac/Windows.
 * Works in single-player and multiplayer.
 * No known mod conflicts.
 

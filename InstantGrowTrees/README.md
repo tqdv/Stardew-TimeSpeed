@@ -27,7 +27,7 @@ setting                    | effect
 `RegularTreesGrowInWinter` | Whether non-fruit trees grow instantly in winter. Default `false`.
 
 ## Compatibility
-* Works with Stardew Valley 1.3 beta on Linux/Mac/Windows.
+* Works with Stardew Valley 1.3 on Linux/Mac/Windows.
 * Works in single-player and multiplayer.
 * No known mod conflicts.
 

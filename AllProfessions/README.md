@@ -18,7 +18,7 @@ farmer instead of just your chosen one (e.g. both Rancher and Tiller instead of 
 your farmer already leveled up, any profession they're eligible for will be added automatically.
 
 ## Compatibility
-* Works with Stardew Valley 1.2 and 1.3 beta on Linux/Mac/Windows.
+* Works with Stardew Valley 1.3 on Linux/Mac/Windows.
 * Works in single-player and multiplayer.
 * No known mod conflicts.
 

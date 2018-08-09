@@ -38,7 +38,7 @@ setting | effect
 `Keys` | The keyboard/controller/mouse bindings used to control the flow of time. See [available keys](https://stardewvalleywiki.com/Modding:Key_bindings#Available_bindings). Set a key to `null` to disable it.
 
 ## Compatibility
-* Works with Stardew Valley 1.3 beta on Linux/Mac/Windows.
+* Works with Stardew Valley 1.3 on Linux/Mac/Windows.
 * Works in single-player, and in multiplayer if you're the main player. (The mod will disable itself if you're not the main player, so it's safe to keep installed.)
 * No known mod conflicts.
 
