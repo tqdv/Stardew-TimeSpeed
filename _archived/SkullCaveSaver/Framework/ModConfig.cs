@@ -1,7 +1,7 @@
-﻿namespace SkullCaveSaver
+﻿namespace SkullCaveSaver.Framework
 {
     /// <summary>The mod configuration model.</summary>
-    public class ModConfig
+    internal class ModConfig
     {
         /*********
         ** Accessors

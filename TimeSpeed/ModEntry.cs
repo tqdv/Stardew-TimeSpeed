@@ -8,11 +8,14 @@ using TimeSpeed.Framework;
 namespace TimeSpeed
 {
     /// <summary>The entry class called by SMAPI.</summary>
-    public sealed class TimeSpeed : Mod
+    internal class ModEntry : Mod
     {
         /*********
         ** Properties
         *********/
+        /// <summary>Whether time features should be enabled.</summary>
+        private bool ShouldEnable => Context.IsWorldReady && Context.IsMainPlayer;
+
         /// <summary>Displays messages to the user.</summary>
         private readonly Notifier Notifier = new Notifier();
 
@@ -62,7 +65,8 @@ namespace TimeSpeed
             // add time events
             this.TimeHelper.WhenTickProgressChanged(this.ReceiveTickProgress);
             InputEvents.ButtonPressed += this.InputEvents_ButtonPressed;
-            LocationEvents.CurrentLocationChanged += this.LocationEvents_CurrentLocationChanged;
+            PlayerEvents.Warped += this.PlayerEvents_Warped;
+            SaveEvents.AfterLoad += SaveEvents_AfterLoad;
             TimeEvents.TimeOfDayChanged += this.TimeEvents_TimeOfDayChanged;
             TimeEvents.AfterDayStarted += this.TimeEvents_AfterDayStarted;
 
@@ -89,12 +93,30 @@ namespace TimeSpeed
         /****
         ** Event handlers
         ****/
+        /// <summary>The method called when the player loads a save.</summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
+        private void SaveEvents_AfterLoad(object sender, EventArgs e)
+        {
+            if (!Context.IsMainPlayer)
+                this.Monitor.Log("Disabled mod; only works for the main player in multiplayer.", LogLevel.Warn);
+        }
+
+        /// <summary>The method called when the day changes.</summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
+        private void TimeEvents_AfterDayStarted(object sender, EventArgs e)
+        {
+            this.UpdateScaleForDay(Game1.currentSeason, Game1.dayOfMonth);
+            this.UpdateSettingsForLocation(Game1.currentLocation);
+        }
+
         /// <summary>The method called when the player presses a button.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void InputEvents_ButtonPressed(object sender, EventArgsInput e)
         {
-            if (!Context.IsPlayerFree)
+            if (!this.ShouldEnable || !Context.IsPlayerFree)
                 return;
 
             SButton key = e.Button;
@@ -109,9 +131,12 @@ namespace TimeSpeed
         /// <summary>The method called when the player moves to a new location.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void LocationEvents_CurrentLocationChanged(object sender, EventArgsCurrentLocationChanged e)
+        private void PlayerEvents_Warped(object sender, EventArgsPlayerWarped e)
         {
-            this.UpdateSettingsForLocation(Game1.currentLocation);
+            if (!this.ShouldEnable)
+                return;
+
+            this.UpdateSettingsForLocation(e.NewLocation);
         }
 
         /// <summary>The method called when the time of day changes.</summary>
@@ -119,21 +144,19 @@ namespace TimeSpeed
         /// <param name="e">The event arguments.</param>
         private void TimeEvents_TimeOfDayChanged(object sender, EventArgsIntChanged e)
         {
-            this.UpdateFreezeForTime(Game1.timeOfDay);
-        }
+            if (!this.ShouldEnable)
+                return;
 
-        /// <summary>The method called when the day changes.</summary>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event arguments.</param>
-        private void TimeEvents_AfterDayStarted(object sender, EventArgs e)
-        {
-            this.UpdateScaleForDay(Game1.currentSeason, Game1.dayOfMonth);
+            this.UpdateFreezeForTime(Game1.timeOfDay);
         }
 
         /// <summary>The method called when the <see cref="Framework.TimeHelper.TickProgress"/> value changes.</summary>
         /// <param name="e">The event arguments.</param>
         private void ReceiveTickProgress(TickProgressChangedEventArgs e)
         {
+            if (!this.ShouldEnable)
+                return;
+
             if (this.Frozen)
                 this.TimeHelper.TickProgress = e.TimeChanged ? 0 : e.PreviousProgress;
             else
@@ -205,7 +228,7 @@ namespace TimeSpeed
             {
                 this.Frozen = false;
                 this.Notifier.QuickNotify("Time feels as usual now...");
-                this.Monitor.Log($"Time is temporarily unfrozen at \"{Game1.currentLocation.name}\".", LogLevel.Info);
+                this.Monitor.Log($"Time is temporarily unfrozen at \"{Game1.currentLocation.Name}\".", LogLevel.Info);
             }
         }
 
@@ -231,7 +254,7 @@ namespace TimeSpeed
             // update time settings
             this.FrozenAtLocation = this.FrozenGlobally || this.Config.ShouldFreeze(location);
             if (this.Config.GetTickInterval(location) != null)
-                this.TickInterval = this.Config.GetTickInterval(Game1.currentLocation) ?? this.TickInterval;
+                this.TickInterval = this.Config.GetTickInterval(location) ?? this.TickInterval;
 
             // notify player
             if (this.Config.LocationNotify)

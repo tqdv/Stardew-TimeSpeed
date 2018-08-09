@@ -1,4 +1,9 @@
 # Release notes
+## 1.6
+* Updated to Stardew Valley 1.3 (including multiplayer).
+* Fixed legendaries not shown in the collections tab.
+* The game now tracks legendary fish stats (e.g. how many you've caught).
+
 ## 1.5.1
 * Updated to SMAPI 2.4.
 * Added automatic update checks via SMAPI.

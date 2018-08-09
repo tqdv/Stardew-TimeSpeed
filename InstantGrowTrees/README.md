@@ -1,17 +1,15 @@
 ﻿**Instant Grow Trees** is a [Stardew Valley](http://stardewvalley.net/) mod which causes trees to
 grow instantly overnight if they have enough space.
 
-Compatible with Stardew Valley 1.2+ on Linux, Mac, and Windows.
-
 ## Contents
 * [Install](#install)
 * [Use](#use)
-* [Versions](#versions)
+* [Compatibility](#compatibility)
 * [See also](#see-also)
 
 ## Install
 1. [Install the latest version of SMAPI](https://smapi.io).
-2. Install [this mod from Nexus mods](http://www.nexusmods.com/stardewvalley/mods/173).
+2. Install [this mod from Nexus mods](https://www.nexusmods.com/stardewvalley/mods/173).
 3. Run the game using SMAPI.
 
 ## Use
@@ -21,14 +19,18 @@ will grow instantly overnight.
 The mod creates a `config.json` file the first time you run it. You can open the file in a text
 editor to configure the mod:
 
-setting | effect
-:------ | :-----
-`FruitTreesInstantGrowth` | Whether fruit trees grow instantly overnight. Default `false`.
-`RegularTreesInstantGrow` | Whether non-fruit trees grow instantly overnight. Default `true`.
+setting                    | effect
+:------------------------- | :-----
+`FruitTreesInstantGrowth`  | Whether fruit trees grow instantly overnight. Default `true`.
+`FruitTreesInstantAge`     | Whether fruit trees age instantly to iridium quality overnight. Default `false`.
+`RegularTreesInstantGrow`  | Whether non-fruit trees grow instantly overnight. Default `true`.
 `RegularTreesGrowInWinter` | Whether non-fruit trees grow instantly in winter. Default `false`.
 
-## Versions
-See [release notes](release-notes.md).
+## Compatibility
+* Works with Stardew Valley 1.3 on Linux/Mac/Windows.
+* Works in single-player and multiplayer.
+* No known mod conflicts.
 
 ## See also
-* [Nexus mod](http://www.nexusmods.com/stardewvalley/mods/173)
+* [Release notes](release-notes.md)
+* [Nexus mod](https://www.nexusmods.com/stardewvalley/mods/173)

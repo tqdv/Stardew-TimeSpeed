@@ -1,4 +1,8 @@
 # Release notes
+## 1.4
+* Updated for Stardew Valley 1.3 (including multiplayer).
+* Added `data.json` to let players override which professions are assigned.
+
 ## 1.3.1
 * Updated to SMAPI 2.4.
 * Added automatic update checks via SMAPI.

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using SkullCaveSaver.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -8,7 +9,7 @@ using StardewValley.Locations;
 namespace SkullCaveSaver
 {
     /// <summary>The entry class called by SMAPI.</summary>
-    public class ModEntry : Mod
+    internal class ModEntry : Mod
     {
         /*********
         ** Properties
@@ -57,8 +58,7 @@ namespace SkullCaveSaver
         /// <param name="e">The event arguments.</param>
         private void ReceiveHalfSecondTick(object sender, EventArgs e)
         {
-            MineShaft mine = Game1.currentLocation as MineShaft;
-            if (mine != null)
+            if (Game1.currentLocation is MineShaft mine)
             {
                 // ignore if currently warping
                 if (this.WarpingToSavedLevel)
@@ -70,7 +70,7 @@ namespace SkullCaveSaver
                 // warp to warp level
                 else if (mine.mineLevel > 120 && mine.mineLevel < this.Config.LastMineLevel && !this.WarpingToSavedLevel)
                 {
-                    Game1.enterMine(false, this.Config.LastMineLevel, null);
+                    Game1.enterMine(this.Config.LastMineLevel);
                     this.WarpingToSavedLevel = true;
                 }
 

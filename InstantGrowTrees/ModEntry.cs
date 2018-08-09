@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using InstantGrowTrees.Framework;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -8,13 +10,17 @@ using StardewValley.TerrainFeatures;
 namespace InstantGrowTrees
 {
     /// <summary>The entry class called by SMAPI.</summary>
-    public class ModEntry : Mod
+    internal class ModEntry : Mod
     {
         /*********
         ** Properties
         *********/
         /// <summary>The mod configuration.</summary>
         private ModConfig Config;
+
+        /// <summary>The number of days after a tree is fully grown until it reaches iridium quality.</summary>
+        /// <remarks>Fruit trees increase in quality once per year, so iridium is 30 days * 4 seasons * 3 quality increases.</remarks>
+        private const int FruitTreeIridiumDays = 360;
 
 
         /*********
@@ -53,7 +59,7 @@ namespace InstantGrowTrees
         {
             foreach (GameLocation location in Game1.locations)
             {
-                foreach (var entry in location.terrainFeatures)
+                foreach (KeyValuePair<Vector2, TerrainFeature> entry in location.terrainFeatures.Pairs)
                 {
                     Vector2 tile = entry.Key;
                     TerrainFeature feature = entry.Value;
@@ -72,10 +78,10 @@ namespace InstantGrowTrees
         /// <param name="tile">The tree's tile position.</param>
         private void GrowTree(Tree tree, GameLocation location, Vector2 tile)
         {
-            if (this.Config.RegularTreesGrowInWinter || !Game1.currentSeason.Equals("winter") || tree.treeType == Tree.palmTree)
+            if (this.Config.RegularTreesGrowInWinter || !Game1.currentSeason.Equals("winter") || tree.treeType.Value == Tree.palmTree)
             {
                 // ignore fully-grown trees
-                if (tree.growthStage >= Tree.treeStage)
+                if (tree.growthStage.Value >= Tree.treeStage)
                     return;
 
                 // ignore trees on nospawn tiles
@@ -84,7 +90,7 @@ namespace InstantGrowTrees
                     return;
 
                 // ignore blocked seeds
-                if (tree.growthStage == Tree.seedStage && location.objects.ContainsKey(tile))
+                if (tree.growthStage.Value == Tree.seedStage && location.objects.ContainsKey(tile))
                     return;
 
                 // get max growth stage
@@ -96,7 +102,7 @@ namespace InstantGrowTrees
                         continue;
 
                     // check if blocking growth
-                    if (otherTree.growthStage >= Tree.treeStage)
+                    if (otherTree.growthStage.Value >= Tree.treeStage)
                     {
                         maxStage = Tree.treeStage - 1;
                         break;
@@ -104,7 +110,7 @@ namespace InstantGrowTrees
                 }
 
                 // grow tree to max allowed
-                tree.growthStage = maxStage;
+                tree.growthStage.Value = maxStage;
             }
         }
 
@@ -115,7 +121,7 @@ namespace InstantGrowTrees
         private void GrowFruitTree(FruitTree tree, GameLocation location, Vector2 tile)
         {
             // ignore fully-grown trees
-            if (tree.growthStage >= FruitTree.treeStage)
+            if (tree.growthStage.Value >= FruitTree.treeStage)
                 return;
 
             // ignore if tree blocked
@@ -126,8 +132,10 @@ namespace InstantGrowTrees
             }
 
             // grow tree
-            tree.daysUntilMature = 0;
-            tree.growthStage = FruitTree.treeStage;
+            tree.daysUntilMature.Value = this.Config.FruitTreesInstantAge
+                ? -ModEntry.FruitTreeIridiumDays
+                : 0;
+            tree.growthStage.Value = FruitTree.treeStage;
         }
     }
 }
