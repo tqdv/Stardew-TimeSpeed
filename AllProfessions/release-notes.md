@@ -1,4 +1,7 @@
 # Release notes
+## 1.4.1
+* Updated for Stardew Valley 1.3.29.
+
 ## 1.4
 * Updated for Stardew Valley 1.3 (including multiplayer).
 * Added `data.json` to let players override which professions are assigned.

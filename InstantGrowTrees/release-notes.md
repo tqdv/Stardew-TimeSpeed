@@ -1,6 +1,9 @@
 # Release notes
+## 1.4.1
+* Updated for Stardew Valley 1.3.29.
+
 ## 1.4
-* Updated to Stardew Valley 1.3 (including multiplayer).
+* Updated for Stardew Valley 1.3 (including multiplayer).
 * Enabled instant fruit tree growth by default.
 * Added option to instantly age fruit trees to iridium quality (disabled by default).
 
