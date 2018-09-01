@@ -7,7 +7,7 @@ using StardewValley.Locations;
 namespace TimeSpeed.Framework
 {
     /// <summary>The mod configuration model.</summary>
-    internal class TimeSpeedConfig
+    internal class ModConfig
     {
         /*********
         ** Accessors
@@ -59,7 +59,7 @@ namespace TimeSpeed.Framework
         public bool LocationNotify { get; set; } = false;
 
         /// <summary>The keyboard bindings used to control the flow of time. See available keys at <a href="https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.keys.aspx" />. Set a key to null to disable it.</summary>
-        public KeysConfig Keys { get; set; } = new KeysConfig();
+        public ModControlsConfig Keys { get; set; } = new ModControlsConfig();
 
 
         /*********
