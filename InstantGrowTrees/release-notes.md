@@ -1,6 +1,12 @@
 # Release notes
-## 1.4.1
+## 1.5
 * Updated for Stardew Valley 1.3.29.
+* Added support for custom locations.
+* Added support for configuring fruit and non-fruit trees separately.
+* Added option to grow trees even if they'd normally be stunted (e.g. too close to another tree).
+* Trees now grow in winter by default.
+* Fixed 'instantly age fruit trees' option not applied to already-grown trees.
+* Fixed greenhouse non-fruit trees not growing in winter.
 
 ## 1.4
 * Updated for Stardew Valley 1.3 (including multiplayer).
