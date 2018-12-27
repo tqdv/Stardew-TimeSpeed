@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using InstantGrowTrees.Framework;
 using Microsoft.Xna.Framework;
@@ -33,7 +32,7 @@ namespace InstantGrowTrees
         public override void Entry(IModHelper helper)
         {
             this.Config = helper.ReadConfig<ModConfig>();
-            TimeEvents.AfterDayStarted += this.ReceiveAfterDayStarted;
+            helper.Events.GameLoop.DayStarted += this.OnDayStarted;
         }
 
 
@@ -43,10 +42,10 @@ namespace InstantGrowTrees
         /****
         ** Event handlers
         ****/
-        /// <summary>The method called when the current day changes.</summary>
+        /// <summary>Raised after the game begins a new day (including when the player loads a save).</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void ReceiveAfterDayStarted(object sender, EventArgs e)
+        private void OnDayStarted(object sender, DayStartedEventArgs e)
         {
             // When the player loads a saved game, or after the overnight save,
             // check for any trees that should be grown.

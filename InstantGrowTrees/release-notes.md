@@ -1,4 +1,7 @@
 # Release notes
+## 1.5.1
+* Updated for the upcoming SMAPI 3.0.
+
 ## 1.5
 * Updated for Stardew Valley 1.3.29.
 * Added support for custom locations.
