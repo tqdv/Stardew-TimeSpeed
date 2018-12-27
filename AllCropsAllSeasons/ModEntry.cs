@@ -109,7 +109,6 @@ namespace AllCropsAllSeasons
             if (!crops.Any())
                 return;
             Farm farm = Game1.getFarm();
-            GameLocation greenhouse = Game1.getLocationFromName("Greenhouse");
 
             // ignore crops converted into giant crops
             {
@@ -134,7 +133,6 @@ namespace AllCropsAllSeasons
                     dirt.fertilizer.Value = saved.Fertilizer;
                     dirt.crop = saved.Crop;
                     dirt.crop.dead.Value = false;
-                    dirt.dayUpdate(greenhouse, saved.Tile);
                 }
             }
         }
@@ -160,7 +158,7 @@ namespace AllCropsAllSeasons
             foreach (GiantCrop giantCrop in farm.resourceClumps.OfType<GiantCrop>())
             {
                 Vector2 tile = giantCrop.tile.Value;
-                
+
                 yield return tile; // top left tile
                 yield return tile + new Vector2(1, 0);
                 yield return tile + new Vector2(0, 1);

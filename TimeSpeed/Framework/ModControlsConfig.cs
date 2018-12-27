@@ -3,7 +3,7 @@ using StardewModdingAPI;
 namespace TimeSpeed.Framework
 {
     /// <summary>The keyboard bindings used to control the flow of time. See available keys at <a href="https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.keys.aspx" />. Set a key to null to disable it.</summary>
-    internal class KeysConfig
+    internal class ModControlsConfig
     {
         /*********
         ** Accessors

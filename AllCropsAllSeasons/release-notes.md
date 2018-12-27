@@ -1,6 +1,10 @@
 # Release notes
+## 1.6.1
+* Updated for Stardew Valley 1.3.29.
+* Fixed crops growing twice as fast in winter.
+
 ## 1.6
-* Updated to Stardew Valley 1.3 (including multiplayer).
+* Updated for Stardew Valley 1.3 (including multiplayer).
 
 ## 1.5
 * Updated to SMAPI 2.4.

@@ -23,7 +23,7 @@ namespace TimeSpeed
         private readonly TimeHelper TimeHelper = new TimeHelper();
 
         /// <summary>The mod configuration.</summary>
-        private TimeSpeedConfig Config;
+        private ModConfig Config;
 
         /// <summary>Whether time should be frozen everywhere.</summary>
         private bool FrozenGlobally;
@@ -60,7 +60,7 @@ namespace TimeSpeed
         public override void Entry(IModHelper helper)
         {
             // read config
-            this.Config = helper.ReadConfig<TimeSpeedConfig>();
+            this.Config = helper.ReadConfig<ModConfig>();
 
             // add time events
             this.TimeHelper.WhenTickProgressChanged(this.ReceiveTickProgress);
@@ -179,7 +179,7 @@ namespace TimeSpeed
         /// <summary>Reload <see cref="Config"/> from the config file.</summary>
         private void ReloadConfig()
         {
-            this.Config = this.Helper.ReadConfig<TimeSpeedConfig>();
+            this.Config = this.Helper.ReadConfig<ModConfig>();
             this.UpdateScaleForDay(Game1.currentSeason, Game1.dayOfMonth);
             this.UpdateSettingsForLocation(Game1.currentLocation);
             this.Notifier.ShortNotify("Time feels differently now...");

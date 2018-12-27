@@ -7,13 +7,13 @@ using StardewValley.Locations;
 namespace TimeSpeed.Framework
 {
     /// <summary>The mod configuration model.</summary>
-    internal class TimeSpeedConfig
+    internal class ModConfig
     {
         /*********
         ** Accessors
         *********/
         /// <summary>The default number of seconds per 10-game-minutes, or <c>null</c> to freeze time globally. The game uses 7 seconds by default.</summary>
-        public double? DefaultTickLength { get; set; } = 14.0;
+        public double? DefaultTickLength { get; set; } = 7.0;
 
         /// <summary>The number of seconds per 10-game-minutes (or <c>null</c> to freeze time) for each location. The key can be a location name, 'Mine', or <see cref="LocationType"/>.</summary>
         /// <remarks>Most location names can be found at "\Stardew Valley\Content\Maps" directory. They usually match the file name without its extension. 'Mine' is a special case which includes all mine maps.</remarks>
@@ -45,8 +45,8 @@ namespace TimeSpeed.Framework
         public Dictionary<string, double?> TickLengthByLocation { get; set; } = new Dictionary<string, double?>
         {
             { LocationType.Indoors.ToString(), 14 },
-            { LocationType.Outdoors.ToString(), 14 },
-            { "Mine", 14 }
+            { LocationType.Outdoors.ToString(), 7 },
+            { LocationType.Mine.ToString(), 7 }
         };
 
         /// <summary>Whether to change tick length on festival days.</summary>
@@ -59,7 +59,7 @@ namespace TimeSpeed.Framework
         public bool LocationNotify { get; set; } = false;
 
         /// <summary>The keyboard bindings used to control the flow of time. See available keys at <a href="https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.keys.aspx" />. Set a key to null to disable it.</summary>
-        public KeysConfig Keys { get; set; } = new KeysConfig();
+        public ModControlsConfig Keys { get; set; } = new ModControlsConfig();
 
 
         /*********
@@ -113,7 +113,7 @@ namespace TimeSpeed.Framework
             // check by location name
             if (this.TickLengthByLocation.TryGetValue(location.Name, out double? tickLength))
                 return tickLength;
-            if (location is MineShaft && this.TickLengthByLocation.TryGetValue("Mine", out tickLength))
+            if (location is MineShaft && this.TickLengthByLocation.TryGetValue(LocationType.Mine.ToString(), out tickLength))
                 return tickLength;
 
             // check by location type
