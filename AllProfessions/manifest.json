@@ -5,6 +5,6 @@
   "Description": "Gives you all possible professions when you level up, instead of just the one chosen.",
   "UniqueID": "cantorsdust.AllProfessions",
   "EntryDll": "AllProfessions.dll",
-  "MinimumApiVersion": "2.8.0-beta",
+  "MinimumApiVersion": "2.9.3",
   "UpdateKeys": [ "Nexus:174" ]
 }

@@ -5,6 +5,6 @@
   "Description": "Lets you catch legendary fish again and again.",
   "UniqueID": "cantorsdust.RecatchLegendaryFish",
   "EntryDll": "RecatchLegendaryFish.dll",
-  "MinimumApiVersion": "2.8.0-beta",
+  "MinimumApiVersion": "2.9.3",
   "UpdateKeys": [ "Nexus:172" ]
 }
