@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>TimeSpeed</AssemblyName>
     <RootNamespace>TimeSpeed</RootNamespace>
-    <Version>2.4.2</Version>
+    <Version>2.4.3</Version>
     <TargetFramework>net452</TargetFramework>
     <Platforms>x86</Platforms>
     <PlatformTarget>x86</PlatformTarget>

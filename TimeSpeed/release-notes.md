@@ -1,6 +1,9 @@
 # Release notes
+## 2.4.3
+* Updated for Stardew Valley 1.4.
+
 ## 2.4.2
-* Updated for the upcoming SMAPI 3.0.
+* Updated for SMAPI 3.0.
 
 ## 2.4.1
 * Changed the default time speed to match the game, except indoors where it runs at half-speed. (Previously time ran at half-speed everywhere by default.)

@@ -1,6 +1,9 @@
 # Release notes
+## 1.5.2
+* Updated for Stardew Valley 1.4.
+
 ## 1.5.1
-* Updated for the upcoming SMAPI 3.0.
+* Updated for SMAPI 3.0.
 
 ## 1.5
 * Updated for Stardew Valley 1.3.29.
