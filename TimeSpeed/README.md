@@ -1,4 +1,4 @@
-**TimeSpeed** is a [Stardew Valley](http://stardewvalley.net/) mod which lets you control the flow
+﻿**TimeSpeed** is a [Stardew Valley](http://stardewvalley.net/) mod which lets you control the flow
 of time in the game: speed it up, slow it down, or freeze it altogether. This can happen
 automatically or when you press a key in the game.
 

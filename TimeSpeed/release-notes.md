@@ -1,4 +1,4 @@
-# Release notes
+﻿# Release notes
 ## Upcoming release
 * Added support for [multi-key bindings](https://stardewvalleywiki.com/Modding:Player_Guide/Key_Bindings#Multi-key_bindings).
 * You can now change time speed during events.

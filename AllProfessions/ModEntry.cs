@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -38,13 +38,13 @@ namespace AllProfessions
                 return;
             }
 
-            // log if data.json is customised
+            // log if data.json is customized
             string dataPath = Path.Combine(this.Helper.DirectoryPath, "data.json");
             if (File.Exists(dataPath))
             {
                 string hash = this.GetFileHash(dataPath);
                 if (hash != this.DataFileHash)
-                    this.Monitor.Log($"Using a custom data.json file (MD5 hash: {hash}).", LogLevel.Trace);
+                    this.Monitor.Log($"Using a custom data.json file (MD5 hash: {hash}).");
             }
 
             // hook event
@@ -75,12 +75,11 @@ namespace AllProfessions
         /// <param name="absolutePath">The absolute file path.</param>
         private string GetFileHash(string absolutePath)
         {
-            using (FileStream stream = File.OpenRead(absolutePath))
-            using (MD5 md5 = MD5.Create())
-            {
-                var hash = md5.ComputeHash(stream);
-                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
-            }
+            using FileStream stream = File.OpenRead(absolutePath);
+            using MD5 md5 = MD5.Create();
+
+            byte[] hash = md5.ComputeHash(stream);
+            return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
         }
 
         /// <summary>Get the profession levels to gain for each skill level.</summary>

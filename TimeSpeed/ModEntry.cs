@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Xna.Framework.Input;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -44,8 +44,8 @@ namespace TimeSpeed
         /// <summary>The number of seconds per 10-game-minutes to apply.</summary>
         private int TickInterval
         {
-            get => _tickInterval;
-            set => _tickInterval = Math.Max(value, 0);
+            get => this._tickInterval;
+            set => this._tickInterval = Math.Max(value, 0);
         }
 
 
@@ -234,8 +234,8 @@ namespace TimeSpeed
                 this.TickInterval = this.TickInterval + change;
 
             // log change
-            this.Notifier.QuickNotify($"10 minutes feels like {TickInterval / 1000} seconds.");
-            this.Monitor.Log($"Tick length set to {TickInterval / 1000d: 0.##} seconds.", LogLevel.Info);
+            this.Notifier.QuickNotify($"10 minutes feels like {this.TickInterval / 1000} seconds.");
+            this.Monitor.Log($"Tick length set to {this.TickInterval / 1000d: 0.##} seconds.", LogLevel.Info);
         }
 
         /// <summary>Toggle whether time is frozen.</summary>
@@ -287,7 +287,7 @@ namespace TimeSpeed
                 else if (this.FrozenAtLocation)
                     this.Notifier.ShortNotify("It feels like time is frozen here...");
                 else
-                    this.Notifier.ShortNotify($"10 minutes feels more like {TickInterval / 1000} seconds here...");
+                    this.Notifier.ShortNotify($"10 minutes feels more like {this.TickInterval / 1000} seconds here...");
             }
         }
 

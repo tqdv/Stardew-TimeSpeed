@@ -1,4 +1,4 @@
-﻿namespace AllProfessions.Framework
+namespace AllProfessions.Framework
 {
     /// <summary>The mod configuration model.</summary>
     internal class ModData
