@@ -31,7 +31,7 @@ namespace AllProfessions
         public override void Entry(IModHelper helper)
         {
             // read data
-            this.ProfessionsToGain = this.GetProfessionsToGain(this.Helper.Data.ReadJsonFile<ModData>("data.json")).ToArray();
+            this.ProfessionsToGain = this.GetProfessionsToGain(this.Helper.Data.ReadJsonFile<ModData>("assets/data.json")).ToArray();
             if (!this.ProfessionsToGain.Any())
             {
                 this.Monitor.Log("The data.json file is missing or invalid; try reinstalling the mod.", LogLevel.Error);
@@ -39,7 +39,7 @@ namespace AllProfessions
             }
 
             // log if data.json is customized
-            string dataPath = Path.Combine(this.Helper.DirectoryPath, "data.json");
+            string dataPath = Path.Combine(this.Helper.DirectoryPath, "assets", "data.json");
             if (File.Exists(dataPath))
             {
                 string hash = this.GetFileHash(dataPath);
