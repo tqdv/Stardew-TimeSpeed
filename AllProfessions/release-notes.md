@@ -1,5 +1,6 @@
 # Release notes
 ## Upcoming release
+* Moved `data.json` into the conventional `assets` folder.
 * Fixed compatibility with [unofficial 64-bit mode](https://stardewvalleywiki.com/Modding:Migrate_to_64-bit_on_Windows).
 
 ## 1.4.3
