@@ -9,6 +9,9 @@ namespace TimeSpeed.Framework
         /// <summary>The location is outside.</summary>
         Outdoors,
 
+        /// <summary>The generated locations from the Deep Woods mod.</summary>
+        DeepWoods,
+
         /// <summary>The normal mines.</summary>
         Mine,
 

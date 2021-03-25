@@ -105,7 +105,7 @@ namespace TimeSpeed.Framework
         [OnDeserialized]
         private void OnDeserializedMethod(StreamingContext context)
         {
-            this.TickLengthByLocation = new Dictionary<string, double?>(this.TickLengthByLocation, StringComparer.OrdinalIgnoreCase);
+            this.TickLengthByLocation = new(this.TickLengthByLocation, StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>Get the tick length to apply for a given location, or <c>null</c> to freeze time.</summary>
@@ -140,6 +140,8 @@ namespace TimeSpeed.Framework
             }
             else if (location is VolcanoDungeon)
                 yield return LocationType.VolcanoDungeon;
+            else if (location.Name == "DeepWoods" || location.Name.StartsWith("DeepWoods_"))
+                yield return LocationType.DeepWoods;
 
             // indoors or outdoors
             yield return location.IsOutdoors
