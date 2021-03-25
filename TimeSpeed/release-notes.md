@@ -1,4 +1,7 @@
 # Release notes
+## Upcoming release
+* Fixed compatibility with [unofficial 64-bit mode](https://stardewvalleywiki.com/Modding:Migrate_to_64-bit_on_Windows).
+
 ## 2.4.3
 Released 26 November 2019 for SMAPI 3.0 or later. Updated by Pathoschild.
 
