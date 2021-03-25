@@ -68,7 +68,7 @@ namespace TimeSpeed
             helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
             helper.Events.GameLoop.TimeChanged += this.OnTimeChanged;
             helper.Events.GameLoop.DayStarted += this.OnDayStarted;
-            helper.Events.Input.ButtonPressed += this.OnButtonPressed;
+            helper.Events.Input.ButtonsChanged += this.OnButtonsChanged;
             helper.Events.Player.Warped += this.OnWarped;
 
             // add time freeze/unfreeze notification
@@ -112,20 +112,21 @@ namespace TimeSpeed
             this.UpdateSettingsForLocation(Game1.currentLocation);
         }
 
-        /// <summary>Raised after the player presses a button on the keyboard, controller, or mouse.</summary>
+        /// <summary>Raised after the player presses or releases any buttons on the keyboard, controller, or mouse.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void OnButtonPressed(object sender, ButtonPressedEventArgs e)
+        private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
         {
             if (!this.ShouldEnable || !Context.IsPlayerFree)
                 return;
 
-            SButton key = e.Button;
-            if (key == this.Config.Keys.FreezeTime)
+            if (this.Config.Keys.FreezeTime.JustPressed())
                 this.ToggleFreeze();
-            else if (key == this.Config.Keys.IncreaseTickInterval || key == this.Config.Keys.DecreaseTickInterval)
-                this.ChangeTickInterval(increase: key == Config.Keys.IncreaseTickInterval);
-            else if (key == this.Config.Keys.ReloadConfig)
+            else if (this.Config.Keys.IncreaseTickInterval.JustPressed())
+                this.ChangeTickInterval(increase: true);
+            else if (this.Config.Keys.DecreaseTickInterval.JustPressed())
+                this.ChangeTickInterval(increase: false);
+            else if (this.Config.Keys.ReloadConfig.JustPressed())
                 this.ReloadConfig();
         }
 

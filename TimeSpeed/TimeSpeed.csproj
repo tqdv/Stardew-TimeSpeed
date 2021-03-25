@@ -4,6 +4,7 @@
     <RootNamespace>TimeSpeed</RootNamespace>
     <Version>2.4.3</Version>
     <TargetFramework>net452</TargetFramework>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
