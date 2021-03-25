@@ -1,6 +1,7 @@
 using RecatchLegendaryFish.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.Tools;
 
@@ -13,7 +14,7 @@ namespace RecatchLegendaryFish
         ** Properties
         *********/
         /// <summary>Temporarily hides caught legendary fish from the game.</summary>
-        private readonly FishStash Stash = new FishStash();
+        private readonly PerScreen<FishStash> Stash = new(() => new());
 
 
         /*********
@@ -40,7 +41,7 @@ namespace RecatchLegendaryFish
         /// <param name="e">The event arguments.</param>
         private void OnSaveLoaded(object sender, SaveLoadedEventArgs e)
         {
-            this.Stash.Clear();
+            this.Stash.Value.Clear();
         }
 
         /// <summary>Raised before the game begins writes data to the save file (except the initial save creation).</summary>
@@ -48,7 +49,7 @@ namespace RecatchLegendaryFish
         /// <param name="e">The event arguments.</param>
         private void OnSaving(object sender, SavingEventArgs e)
         {
-            this.Stash.Restore(); // just in case something weird happens
+            this.Stash.Value.Restore(); // just in case something weird happens
         }
 
         /// <summary>Raised after the game state is updated (≈60 times per second).</summary>
@@ -60,14 +61,15 @@ namespace RecatchLegendaryFish
                 return;
 
             // stash legendaries while fishing
+            var stash = this.Stash.Value;
             bool isFishing = Game1.player.UsingTool && Game1.player.CurrentTool is FishingRod;
             if (isFishing)
             {
-                if (!this.Stash.IsStashed)
-                    this.Stash.Start();
+                if (!stash.IsStashed)
+                    stash.Start();
             }
-            else if (this.Stash.IsStashed)
-                this.Stash.Restore();
+            else if (stash.IsStashed)
+                stash.Restore();
         }
     }
 }

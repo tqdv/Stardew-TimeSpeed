@@ -25,8 +25,8 @@ to change the mod logic though. Your changes will be reset when you update the m
 to reapply them.
 
 ## Compatibility
-* Works with Stardew Valley 1.3 on Linux/Mac/Windows.
-* Works in single-player and multiplayer.
+* Works with Stardew Valley 1.5 on Linux/Mac/Windows.
+* Works in single-player, multiplayer, and split-screen mode.
 * No known mod conflicts.
 
 ## See also

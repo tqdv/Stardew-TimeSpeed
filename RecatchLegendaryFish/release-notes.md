@@ -1,5 +1,6 @@
 ﻿# Release notes
 ## Upcoming release
+* Updated for split-screen mode in Stardew Valley 1.5.
 * Fixed compatibility with [unofficial 64-bit mode](https://stardewvalleywiki.com/Modding:Migrate_to_64-bit_on_Windows).
 
 ## 1.6.2

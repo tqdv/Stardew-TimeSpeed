@@ -105,6 +105,9 @@ namespace TimeSpeed
         /// <param name="e">The event arguments.</param>
         private void OnDayStarted(object sender, DayStartedEventArgs e)
         {
+            if (!this.ShouldEnable())
+                return;
+
             this.UpdateScaleForDay(Game1.currentSeason, Game1.dayOfMonth);
             this.UpdateSettingsForLocation(Game1.currentLocation);
         }
@@ -154,6 +157,9 @@ namespace TimeSpeed
         /// <param name="e">The event arguments.</param>
         private void OnUpdateTicked(object sender, UpdateTickedEventArgs e)
         {
+            if (!this.ShouldEnable())
+                return;
+
             this.TimeHelper.Update();
         }
 
