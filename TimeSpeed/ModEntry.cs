@@ -13,14 +13,11 @@ namespace TimeSpeed
         /*********
         ** Properties
         *********/
-        /// <summary>Whether time features should be enabled.</summary>
-        private bool ShouldEnable => Context.IsWorldReady && Context.IsMainPlayer;
-
         /// <summary>Displays messages to the user.</summary>
-        private readonly Notifier Notifier = new Notifier();
+        private readonly Notifier Notifier = new();
 
         /// <summary>Provides helper methods for tracking time flow.</summary>
-        private readonly TimeHelper TimeHelper = new TimeHelper();
+        private readonly TimeHelper TimeHelper = new();
 
         /// <summary>The mod configuration.</summary>
         private ModConfig Config;
@@ -74,13 +71,13 @@ namespace TimeSpeed
             // add time freeze/unfreeze notification
             {
                 bool wasPaused = false;
-                helper.Events.Display.RenderingHud += (sender, args) =>
+                helper.Events.Display.RenderingHud += (_, _) =>
                 {
                     wasPaused = Game1.paused;
                     if (this.Frozen) Game1.paused = true;
                 };
 
-                helper.Events.Display.RenderedHud += (sender, args) =>
+                helper.Events.Display.RenderedHud += (_, _) =>
                 {
                     Game1.paused = wasPaused;
                 };
@@ -94,7 +91,7 @@ namespace TimeSpeed
         /****
         ** Event handlers
         ****/
-        /// <summary>Raised after the player loads a save slot and the world is initialised.</summary>
+        /// <summary>Raised after the player loads a save slot and the world is initialized.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void OnSaveLoaded(object sender, SaveLoadedEventArgs e)
@@ -117,7 +114,7 @@ namespace TimeSpeed
         /// <param name="e">The event arguments.</param>
         private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
         {
-            if (!this.ShouldEnable || !Context.IsPlayerFree)
+            if (!this.ShouldEnable(forInput: true))
                 return;
 
             if (this.Config.Keys.FreezeTime.JustPressed())
@@ -135,7 +132,7 @@ namespace TimeSpeed
         /// <param name="e">The event arguments.</param>
         private void OnWarped(object sender, WarpedEventArgs e)
         {
-            if (!this.ShouldEnable || !e.IsLocalPlayer)
+            if (!this.ShouldEnable() || !e.IsLocalPlayer)
                 return;
 
             this.UpdateSettingsForLocation(e.NewLocation);
@@ -146,7 +143,7 @@ namespace TimeSpeed
         /// <param name="e">The event arguments.</param>
         private void OnTimeChanged(object sender, TimeChangedEventArgs e)
         {
-            if (!this.ShouldEnable)
+            if (!this.ShouldEnable())
                 return;
 
             this.UpdateFreezeForTime(Game1.timeOfDay);
@@ -165,7 +162,7 @@ namespace TimeSpeed
         /// <param name="e">The event arguments.</param>
         private void OnTickProgressed(object sender, TickProgressChangedEventArgs e)
         {
-            if (!this.ShouldEnable)
+            if (!this.ShouldEnable())
                 return;
 
             if (this.Frozen)
@@ -187,6 +184,21 @@ namespace TimeSpeed
         /****
         ** Methods
         ****/
+        /// <summary>Get whether time features should be enabled.</summary>
+        /// <param name="forInput">Whether to check for input handling.</param>
+        private bool ShouldEnable(bool forInput = false)
+        {
+            // is loaded and host player (farmhands can't change time)
+            if (!Context.IsWorldReady || !Context.IsMainPlayer)
+                return false;
+
+            // only handle keys if the player is free, or currently watching an event
+            if (forInput && !Context.IsPlayerFree && !Game1.eventUp)
+                return false;
+
+            return true;
+        }
+
         /// <summary>Reload <see cref="Config"/> from the config file.</summary>
         private void ReloadConfig()
         {
