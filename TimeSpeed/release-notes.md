@@ -1,9 +1,13 @@
 ﻿# Release notes
 ## Upcoming release
 * Added support for [multi-key bindings](https://stardewvalleywiki.com/Modding:Player_Guide/Key_Bindings#Multi-key_bindings).
+* You can now configure the time speed for `SkullCavern` and `VolcanoDungeon` areas.
 * You can now change time speed during events.
 * Updated for split-screen mode in Stardew Valley 1.5.
 * Fixed compatibility with [unofficial 64-bit mode](https://stardewvalleywiki.com/Modding:Migrate_to_64-bit_on_Windows).
+
+**Breaking changes:**
+* The `Mine` option in `TickLengthsByLocation` no longer applies to the Skull Cavern (see `SkullCavern` for that).
 
 ## 2.4.3
 Released 26 November 2019 for SMAPI 3.0 or later. Updated by Pathoschild.
