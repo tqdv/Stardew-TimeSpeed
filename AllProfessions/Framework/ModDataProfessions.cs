@@ -1,4 +1,4 @@
-﻿namespace AllProfessions.Framework
+namespace AllProfessions.Framework
 {
     /// <summary>A set of professions to gain for a skill level.</summary>
     internal class ModDataProfessions
