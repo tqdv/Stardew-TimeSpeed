@@ -32,4 +32,3 @@ to reapply them.
 ## See also
 * [Release notes](release-notes.md)
 * [Nexus mod](https://www.nexusmods.com/stardewvalley/mods/174)
-* [Discussion thread](https://community.playstarbound.com/threads/smapi-allprofessions-dont-choose-get-every-profession-leveling-up.111396/)
