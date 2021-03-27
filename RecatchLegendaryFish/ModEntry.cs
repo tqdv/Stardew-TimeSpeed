@@ -13,6 +13,12 @@ namespace RecatchLegendaryFish
         /*********
         ** Properties
         *********/
+        /// <summary>The mod configuration.</summary>
+        private ModConfig Config;
+
+        /// <summary>Whether the mod is currently enabled.</summary>
+        private bool IsEnabled = true;
+
         /// <summary>Temporarily hides caught legendary fish from the game.</summary>
         private readonly PerScreen<FishStash> Stash = new(() => new());
 
@@ -24,9 +30,12 @@ namespace RecatchLegendaryFish
         /// <param name="helper">Provides simplified APIs for writing mods.</param>
         public override void Entry(IModHelper helper)
         {
+            this.Config = helper.ReadConfig<ModConfig>();
+
             helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
             helper.Events.GameLoop.Saving += this.OnSaving;
             helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+            helper.Events.Input.ButtonsChanged += this.OnButtonsChanged;
         }
 
 
@@ -65,11 +74,35 @@ namespace RecatchLegendaryFish
             bool isFishing = Game1.player.UsingTool && Game1.player.CurrentTool is FishingRod;
             if (isFishing)
             {
-                if (!stash.IsStashed)
+                if (this.IsEnabled && !stash.IsStashed)
                     stash.Start();
             }
             else if (stash.IsStashed)
                 stash.Restore();
+        }
+
+        /// <summary>Raised after the player presses or releases any buttons on the keyboard, controller, or mouse.</summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
+        private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
+        {
+            if (Context.IsPlayerFree && this.Config.ToggleKey.JustPressed())
+                this.OnToggle();
+        }
+
+        /// <summary>Handle the toggle key.</summary>
+        private void OnToggle()
+        {
+            this.IsEnabled = !this.IsEnabled;
+
+            string message = this.Helper.Translation.Get(
+                this.IsEnabled ? "message.enabled" : "message.disabled",
+                new
+                {
+                    key = this.Config.ToggleKey.GetKeybindCurrentlyDown().ToString()
+                }
+            );
+            Game1.addHUDMessage(new HUDMessage(message, HUDMessage.newQuest_type) { timeLeft = 2500 });
         }
     }
 }

@@ -7,7 +7,8 @@ Compatible with Stardew Valley 1.2+ on Linux, Mac, and Windows.
 ## Contents
 * [Install](#install)
 * [Use](#use)
-* [Versions](#versions)
+* [Configure](#configure)
+* [Compatibility](#compatibility)
 * [See also](#see-also)
 
 ## Install
@@ -25,6 +26,7 @@ key | effect
 `.` | Slow down time by one second per 10-game-minutes. Combine with `Control` to increase by 100 seconds, `Shift` to increase by 10 seconds, or `Alt` to increase by 0.1 seconds.
 `B` | Reload the config settings from file.
 
+## Configure
 The mod creates a `config.json` file the first time you run it. You can open the file in a text
 editor to configure the mod:
 
