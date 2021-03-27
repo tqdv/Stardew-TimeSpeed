@@ -211,7 +211,7 @@ namespace TimeSpeed
             this.Config = this.Helper.ReadConfig<ModConfig>();
             this.UpdateScaleForDay(Game1.currentSeason, Game1.dayOfMonth);
             this.UpdateSettingsForLocation(Game1.currentLocation);
-            this.Notifier.ShortNotify("Time feels differently now...");
+            this.Notifier.ShortNotify(this.Helper.Translation.Get("message.config-reloaded"));
         }
 
         /// <summary>Increment or decrement the tick interval, taking into account the held modifier key if applicable.</summary>
@@ -240,7 +240,9 @@ namespace TimeSpeed
                 this.TickInterval = this.TickInterval + change;
 
             // log change
-            this.Notifier.QuickNotify($"10 minutes feels like {this.TickInterval / 1000} seconds.");
+            this.Notifier.QuickNotify(
+                this.Helper.Translation.Get("message.speed-changed", new { seconds = this.TickInterval / 1000 })
+            );
             this.Monitor.Log($"Tick length set to {this.TickInterval / 1000d: 0.##} seconds.", LogLevel.Info);
         }
 
@@ -250,13 +252,13 @@ namespace TimeSpeed
             if (!this.Frozen)
             {
                 this.FrozenGlobally = true;
-                this.Notifier.QuickNotify("Hey, you stopped the time!");
+                this.Notifier.QuickNotify(this.Helper.Translation.Get("message.time-stopped"));
                 this.Monitor.Log("Time is frozen globally.", LogLevel.Info);
             }
             else
             {
                 this.Frozen = false;
-                this.Notifier.QuickNotify("Time feels as usual now...");
+                this.Notifier.QuickNotify(this.Helper.Translation.Get("message.time-resumed"));
                 this.Monitor.Log($"Time is temporarily unfrozen at \"{Game1.currentLocation.Name}\".", LogLevel.Info);
             }
         }
@@ -268,7 +270,7 @@ namespace TimeSpeed
             if (this.Config.ShouldFreeze(time))
             {
                 this.FrozenGlobally = true;
-                this.Notifier.ShortNotify("Time suddenly stops...");
+                this.Notifier.ShortNotify(this.Helper.Translation.Get("message.on-time-change.time-stopped"));
                 this.Monitor.Log($"Time automatically set to frozen at {Game1.timeOfDay}.", LogLevel.Info);
             }
         }
@@ -289,11 +291,11 @@ namespace TimeSpeed
             if (this.Config.LocationNotify)
             {
                 if (this.FrozenGlobally)
-                    this.Notifier.ShortNotify("Looks like time stopped everywhere...");
+                    this.Notifier.ShortNotify(this.Helper.Translation.Get("message.on-location-change.time-stopped-globally"));
                 else if (this.FrozenAtLocation)
-                    this.Notifier.ShortNotify("It feels like time is frozen here...");
+                    this.Notifier.ShortNotify(this.Helper.Translation.Get("message.on-location-change.time-stopped-here"));
                 else
-                    this.Notifier.ShortNotify($"10 minutes feels more like {this.TickInterval / 1000} seconds here...");
+                    this.Notifier.ShortNotify(this.Helper.Translation.Get("message.on-location-change.time-speed-here", new { seconds = this.TickInterval / 1000 }));
             }
         }
 

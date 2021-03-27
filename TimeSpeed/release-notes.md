@@ -2,6 +2,7 @@
 ## Upcoming release
 * Added support for [multi-key bindings](https://stardewvalleywiki.com/Modding:Player_Guide/Key_Bindings#Multi-key_bindings).
 * Added support for configuring time speed for the `SkullCavern`, `VolcanoDungeon`, and [`DeepWoods`](https://www.nexusmods.com/stardewvalley/mods/2571) areas.
+* Added translation support.
 * You can now change time speed during events.
 * Updated for split-screen mode in Stardew Valley 1.5.
 * The mod is now enabled on festival days by default. (This doesn't affect players who already have a `config.json` file.)
