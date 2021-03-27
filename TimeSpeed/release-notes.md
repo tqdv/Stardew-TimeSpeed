@@ -1,9 +1,11 @@
 ﻿# Release notes
-## Upcoming release
-* Added support for [multi-key bindings](https://stardewvalleywiki.com/Modding:Player_Guide/Key_Bindings#Multi-key_bindings).
-* Added support for configuring time speed for the `SkullCavern`, `VolcanoDungeon`, and [`DeepWoods`](https://www.nexusmods.com/stardewvalley/mods/2571) areas.
+## 2.5
+Released 26 March 2020 for SMAPI 3.9.5 or later. Updated by Pathoschild.
+
+* Added [multi-key binding](https://stardewvalleywiki.com/Modding:Player_Guide/Key_Bindings#Multi-key_bindings) support.
 * Added translation support.
-* You can now change time speed during events.
+* Added options to configure time speed for the `SkullCavern`, `VolcanoDungeon`, and [`DeepWoods`](https://www.nexusmods.com/stardewvalley/mods/2571) areas.
+* You can now change time during events.
 * Updated for split-screen mode in Stardew Valley 1.5.
 * The mod is now enabled on festival days by default. (This doesn't affect players who already have a `config.json` file.)
 * Fixed compatibility with [unofficial 64-bit mode](https://stardewvalleywiki.com/Modding:Migrate_to_64-bit_on_Windows).
