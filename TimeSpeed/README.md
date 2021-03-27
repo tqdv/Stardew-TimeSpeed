@@ -31,10 +31,10 @@ editor to configure the mod:
 setting | effect
 :------ | :-----
 `DefaultTickLength` | The default number of seconds per 10-game-minutes, or `null` to freeze time globally. The game uses 7 seconds by default.
-`TickLengthsByLocation` | The number of seconds per 10-game-minutes (or `null` to freeze time) for each location. You can use location names, predefined areas (`Mine`, `SkullCavern`, or `VolcanoDungeon`), or location types (`Indoors` or `Outdoors`).
-`EnableOnFestivalDays` | Whether to change tick length on festival days.
-`FreezeTimeAt` | The time at which to freeze time everywhere (or `null` to disable this). This should be 24-hour military time (e.g. 800 for 8am, 1600 for 8pm, etc). (Be careful the number doesn't start with a zero, due to a bug in the underlying parser.)
-`LocationNotify` | Whether to show a message about the time settings when you enter a location.
+`TickLengthsByLocation` | The number of seconds per 10-game-minutes (or `null` to freeze time) for each location. You can use location names, predefined areas (`DeepWoods`, `Mine`, `SkullCavern`, `VolcanoDungeon`), or location types (`Indoors` or `Outdoors`).
+`EnableOnFestivalDays` | Whether to change tick length on festival days. Default true.
+`FreezeTimeAt` | The time at which to freeze time everywhere (or `null` to disable this). This should be 24-hour military time (e.g. 800 for 8am, 1600 for 8pm, etc). (Be careful the number doesn't start with a zero, due to a bug in the underlying parser.) Defaults to disabled.
+`LocationNotify` | Whether to show a message about the time settings when you enter a location. Default false.
 `Keys` | The keyboard/controller/mouse bindings used to control the flow of time. See [available keys](https://stardewvalleywiki.com/Modding:Key_bindings#Available_bindings). Set a key to `"None"` (including the quotes) to disable it.
 
 ## Compatibility
