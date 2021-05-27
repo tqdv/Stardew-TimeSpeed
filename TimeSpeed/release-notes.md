@@ -1,4 +1,7 @@
 ﻿# Release notes
+## Upcoming release
+* Fixed the default time speed in the Skull Caverns being faster than in the base game.
+
 ## 2.5
 Released 26 March 2020 for SMAPI 3.9.5 or later. Updated by Pathoschild.
 
