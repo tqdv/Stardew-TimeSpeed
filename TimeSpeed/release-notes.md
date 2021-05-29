@@ -1,5 +1,9 @@
 ﻿# Release notes
 ## Upcoming release
+* Fixed issues with the `FreezeTimeAt` option:
+  * Fixed option not applied/unapplied when you change the time of day manually.
+  * Fixed option not applied if you set a time which isn't a multiple of 10 (like `2205`).
+  * Fixed time not resumed when the next day starts.
 * Fixed the default time speed in the Skull Caverns being faster than in the base game.
 
 ## 2.5
