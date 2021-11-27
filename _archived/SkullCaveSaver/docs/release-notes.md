@@ -1,3 +1,5 @@
+[← back to readme](README.md)
+
 # Release notes
 ## 1.3
 * Updated to Stardew Valley 1.3 (including multiplayer).

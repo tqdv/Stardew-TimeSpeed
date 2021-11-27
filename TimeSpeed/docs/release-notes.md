@@ -1,4 +1,6 @@
-﻿# Release notes
+﻿﻿[← back to readme](README.md)
+
+# Release notes
 ## Upcoming release
 * Fixed issues with the `FreezeTimeAt` option:
   * Fixed option not applied/unapplied when you change the time of day manually.

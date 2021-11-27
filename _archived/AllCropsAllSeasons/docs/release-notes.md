@@ -1,3 +1,5 @@
+[← back to readme](README.md)
+
 # Release notes
 ## 1.6.1
 * Updated for Stardew Valley 1.3.29.
