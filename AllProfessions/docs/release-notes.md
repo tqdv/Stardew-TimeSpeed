@@ -1,36 +1,33 @@
-﻿# Release notes
-## 1.5.3
+﻿﻿[← back to readme](README.md)
+
+# Release notes
+## 1.4.4
 Released 26 March 2021 for SMAPI 3.9.5 or later. Updated by Pathoschild.
 
+* Moved `data.json` into the conventional `assets` folder.
 * Fixed compatibility with [unofficial 64-bit mode](https://stardewvalleywiki.com/Modding:Migrate_to_64-bit_on_Windows).
 
-## 1.5.2
+## 1.4.3
 Released 26 November 2019 for SMAPI 3.0 or later. Updated by Pathoschild.
 
 * Updated for Stardew Valley 1.4.
 
-## 1.5.1
-Released 27 December 2018 for SMAPI 2.9.3 or later. Updated by Pathoschild.
+## 1.4.2
+Released 27 December 2018 for SMAPI 3.0 or later. Updated by Pathoschild.
 
 * Updated for SMAPI 3.0.
 
-## 1.5
+## 1.4.1
 Released 01 September 2018 for SMAPI 2.8 or later. Updated by Pathoschild.
 
 * Updated for Stardew Valley 1.3.29.
-* Added support for custom locations.
-* Added support for configuring fruit and non-fruit trees separately.
-* Added option to grow trees even if they'd normally be stunted (e.g. too close to another tree).
-* Trees now grow in winter by default.
-* Fixed 'instantly age fruit trees' option not applied to already-grown trees.
-* Fixed greenhouse non-fruit trees not growing in winter.
+* Fixed mining level 5 professions not getting added.
 
 ## 1.4
 Released 09 August 2018 for SMAPI 2.6 or later. Updated by Pathoschild.
 
 * Updated for Stardew Valley 1.3 (including multiplayer).
-* Enabled instant fruit tree growth by default.
-* Added option to instantly age fruit trees to iridium quality (disabled by default).
+* Added `data.json` to let players override which professions are assigned.
 
 ## 1.3.1
 Released 25 January 2018 for SMAPI 2.4 or later. Updated by Pathoschild.
@@ -47,7 +44,6 @@ Released 24 April 2017 for SMAPI 1.10 or later. Updated by Pathoschild.
 Released 05 April 2017 for SMAPI 1.9 or later. Updated by Pathoschild.
 
 * Updated to SMAPI 1.9.
-* Fixed fruit tree quality not progressing after growth.
 
 ## 1.1
 Released 23 March 2016 for SMAPI 0.38 or later.

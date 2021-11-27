@@ -1,4 +1,14 @@
-﻿# Release notes
+﻿﻿[← back to readme](README.md)
+
+# Release notes
+## 2.5.1
+Released 27 November 2021 for SMAPI 3.12.5 or later. Updated by Pathoschild.
+
+* Fixed the default time speed in the Skull Caverns being faster than in the base game.
+* Fixed `FreezeTimeAt` option not applied/unapplied when you change the time of day manually.
+* Fixed `FreezeTimeAt` option not applied if you set a time which isn't a multiple of 10 (like `2205`).
+* Fixed `FreezeTimeAt` option not resuming time when the next day starts.
+
 ## 2.5
 Released 26 March 2020 for SMAPI 3.9.5 or later. Updated by Pathoschild.
 
