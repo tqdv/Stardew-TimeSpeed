@@ -1,0 +1,12 @@
+﻿{
+    "message.config-reloaded": "O tempo parece diferente agora...",
+    "message.speed-changed": "10 minutos parecem como {{seconds}} segundos.",
+    "message.time-stopped": "Aí, você parou o tempo!",
+    "message.time-resumed": "O tempo parece normal agora...",
+
+    "message.on-time-change.time-stopped": "O tempo súbitamente congela...",
+
+    "message.on-location-change.time-stopped-globally": "Parece que você parou o tempo globalmente...",
+    "message.on-location-change.time-stopped-here": "Parece que o tempo está congelado aqui...",
+    "message.on-location-change.time-speed-here": "10 minutos parecem mais como {{seconds}} segundos aqui..."
+}
