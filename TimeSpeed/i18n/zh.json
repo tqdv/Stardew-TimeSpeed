@@ -1,0 +1,12 @@
+﻿{
+    "message.config-reloaded": "时间流动变得不同了...",
+    "message.speed-changed": "10分钟感觉就像 {{seconds}} 秒。",
+    "message.time-stopped": "嘿，你冻结了时间!",
+    "message.time-resumed": "时间像往常一样重新流动...",
+
+    "message.on-time-change.time-stopped": "时间突然停止...",
+
+    "message.on-location-change.time-stopped-globally": "无论在哪时间都停止...",
+    "message.on-location-change.time-stopped-here": "在这里时间似乎停止了...",
+    "message.on-location-change.time-speed-here": "这里10分钟感觉就像{{seconds}} 秒钟..."
+}
