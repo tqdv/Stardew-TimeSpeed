@@ -53,6 +53,8 @@ namespace TimeSpeed
         /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
+            I18n.Init(helper.Translation);
+
             // read config
             this.Config = helper.ReadConfig<ModConfig>();
 
@@ -210,7 +212,7 @@ namespace TimeSpeed
             this.Config = this.Helper.ReadConfig<ModConfig>();
             this.UpdateScaleForDay(Game1.currentSeason, Game1.dayOfMonth);
             this.UpdateSettingsForLocation(Game1.currentLocation);
-            this.Notifier.ShortNotify(this.Helper.Translation.Get("message.config-reloaded"));
+            this.Notifier.ShortNotify(I18n.Message_ConfigReloaded());
         }
 
         /// <summary>Increment or decrement the tick interval, taking into account the held modifier key if applicable.</summary>
@@ -240,7 +242,7 @@ namespace TimeSpeed
 
             // log change
             this.Notifier.QuickNotify(
-                this.Helper.Translation.Get("message.speed-changed", new { seconds = this.TickInterval / 1000 })
+                I18n.Message_SpeedChanged(seconds: this.TickInterval / 1000)
             );
             this.Monitor.Log($"Tick length set to {this.TickInterval / 1000d: 0.##} seconds.", LogLevel.Info);
         }
@@ -251,13 +253,13 @@ namespace TimeSpeed
             if (!this.IsTimeFrozen)
             {
                 this.UpdateTimeFreeze(manualOverride: true);
-                this.Notifier.QuickNotify(this.Helper.Translation.Get("message.time-stopped"));
+                this.Notifier.QuickNotify(I18n.Message_TimeStopped());
                 this.Monitor.Log("Time is frozen globally.", LogLevel.Info);
             }
             else
             {
                 this.UpdateTimeFreeze(manualOverride: false);
-                this.Notifier.QuickNotify(this.Helper.Translation.Get("message.time-resumed"));
+                this.Notifier.QuickNotify(I18n.Message_TimeResumed());
                 this.Monitor.Log($"Time is resumed at \"{Game1.currentLocation.Name}\".", LogLevel.Info);
             }
         }
@@ -270,7 +272,7 @@ namespace TimeSpeed
 
             if (!wasFrozen && this.IsTimeFrozen)
             {
-                this.Notifier.ShortNotify(this.Helper.Translation.Get("message.on-time-change.time-stopped"));
+                this.Notifier.ShortNotify(I18n.Message_OnTimeChange_TimeStopped());
                 this.Monitor.Log($"Time automatically set to frozen at {Game1.timeOfDay}.", LogLevel.Info);
             }
         }
@@ -293,15 +295,15 @@ namespace TimeSpeed
                 switch (this.AutoFreeze)
                 {
                     case AutoFreezeReason.FrozenAtTime when this.IsTimeFrozen:
-                        this.Notifier.ShortNotify(this.Helper.Translation.Get("message.on-location-change.time-stopped-globally"));
+                        this.Notifier.ShortNotify(I18n.Message_OnLocationChange_TimeStoppedGlobally());
                         break;
 
                     case AutoFreezeReason.FrozenForLocation when this.IsTimeFrozen:
-                        this.Notifier.ShortNotify(this.Helper.Translation.Get("message.on-location-change.time-stopped-here"));
+                        this.Notifier.ShortNotify(I18n.Message_OnLocationChange_TimeStoppedHere());
                         break;
 
                     default:
-                        this.Notifier.ShortNotify(this.Helper.Translation.Get("message.on-location-change.time-speed-here", new { seconds = this.TickInterval / 1000 }));
+                        this.Notifier.ShortNotify(I18n.Message_OnLocationChange_TimeSpeedHere(seconds: this.TickInterval / 1000));
                         break;
                 }
             }

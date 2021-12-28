@@ -29,6 +29,8 @@ namespace RecatchLegendaryFish
         /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
+            I18n.Init(helper.Translation);
+
             this.Config = helper.ReadConfig<ModConfig>();
 
             helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
@@ -94,13 +96,10 @@ namespace RecatchLegendaryFish
         {
             this.IsEnabled = !this.IsEnabled;
 
-            string message = this.Helper.Translation.Get(
-                this.IsEnabled ? "message.enabled" : "message.disabled",
-                new
-                {
-                    key = this.Config.ToggleKey.GetKeybindCurrentlyDown().ToString()
-                }
-            );
+            string key = this.Config.ToggleKey.GetKeybindCurrentlyDown().ToString();
+            string message = this.IsEnabled
+                ? I18n.Message_Enabled(key: key)
+                : I18n.Message_Disabled(key: key);
             Game1.addHUDMessage(new HUDMessage(message, HUDMessage.newQuest_type) { timeLeft = 2500 });
         }
     }
