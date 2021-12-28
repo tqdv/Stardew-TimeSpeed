@@ -40,7 +40,7 @@ setting | effect
 `Keys` | The keyboard/controller/mouse bindings used to control the flow of time. See [available keys](https://stardewvalleywiki.com/Modding:Key_bindings#Available_bindings). Set a key to `"None"` (including the quotes) to disable it.
 
 ## Compatibility
-* Works with Stardew Valley 1.5 on Linux/Mac/Windows.
+* Works with Stardew Valley 1.5.5+ on Linux/Mac/Windows.
 * Works in single-player, multiplayer, and split-screen mode. In multiplayer you must be the main player. (The mod will disable itself if you're not the main player, so it's safe to keep installed.)
 * No known mod conflicts.
 

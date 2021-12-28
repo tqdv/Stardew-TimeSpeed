@@ -30,7 +30,7 @@ group           | setting                    | effect
 &nbsp;          | `InstantlyGrowWhenInvalid` | Whether non-fruit trees also grow instantly even if they normally wouldn't grow (e.g. too close to another tree). Default `false`.
 
 ## Compatibility
-* Works with Stardew Valley 1.5 on Linux/Mac/Windows.
+* Works with Stardew Valley 1.5.5+ on Linux/Mac/Windows.
 * Works in single-player, multiplayer, and split-screen mode.
 * No known mod conflicts.
 
