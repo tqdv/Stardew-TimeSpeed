@@ -50,8 +50,7 @@ namespace TimeSpeed
         /*********
         ** Public methods
         *********/
-        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
-        /// <param name="helper">Provides simplified APIs for writing mods.</param>
+        /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
             // read config
@@ -90,7 +89,7 @@ namespace TimeSpeed
         /****
         ** Event handlers
         ****/
-        /// <summary>Raised after the player loads a save slot and the world is initialized.</summary>
+        /// <inheritdoc cref="IGameLoopEvents.SaveLoaded"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void OnSaveLoaded(object sender, SaveLoadedEventArgs e)
@@ -99,7 +98,7 @@ namespace TimeSpeed
                 this.Monitor.Log("Disabled mod; only works for the main player in multiplayer.", LogLevel.Warn);
         }
 
-        /// <summary>Raised after the game begins a new day (including when the player loads a save).</summary>
+        /// <inheritdoc cref="IGameLoopEvents.DayStarted"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void OnDayStarted(object sender, DayStartedEventArgs e)
@@ -112,7 +111,7 @@ namespace TimeSpeed
             this.UpdateSettingsForLocation(Game1.currentLocation);
         }
 
-        /// <summary>Raised after the player presses or releases any buttons on the keyboard, controller, or mouse.</summary>
+        /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
@@ -130,7 +129,7 @@ namespace TimeSpeed
                 this.ReloadConfig();
         }
 
-        /// <summary>Raised after a player warps to a new location.</summary>
+        /// <inheritdoc cref="IPlayerEvents.Warped"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void OnWarped(object sender, WarpedEventArgs e)
@@ -141,7 +140,7 @@ namespace TimeSpeed
             this.UpdateSettingsForLocation(e.NewLocation);
         }
 
-        /// <summary>Raised after the in-game clock time changes.</summary>
+        /// <inheritdoc cref="IGameLoopEvents.TimeChanged"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void OnTimeChanged(object sender, TimeChangedEventArgs e)
@@ -152,7 +151,7 @@ namespace TimeSpeed
             this.UpdateFreezeForTime();
         }
 
-        /// <summary>Raised after the game state is updated (≈60 times per second).</summary>
+        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void OnUpdateTicked(object sender, UpdateTickedEventArgs e)

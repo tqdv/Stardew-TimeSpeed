@@ -26,8 +26,7 @@ namespace RecatchLegendaryFish
         /*********
         ** Public methods
         *********/
-        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
-        /// <param name="helper">Provides simplified APIs for writing mods.</param>
+        /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
             this.Config = helper.ReadConfig<ModConfig>();
@@ -45,7 +44,7 @@ namespace RecatchLegendaryFish
         /****
         ** Event handlers
         ****/
-        /// <summary>Raised after the player loads a save slot and the world is initialised.</summary>
+        /// <inheritdoc cref="IGameLoopEvents.SaveLoaded"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void OnSaveLoaded(object sender, SaveLoadedEventArgs e)
@@ -53,7 +52,7 @@ namespace RecatchLegendaryFish
             this.Stash.Value.Clear();
         }
 
-        /// <summary>Raised before the game begins writes data to the save file (except the initial save creation).</summary>
+        /// <inheritdoc cref="IGameLoopEvents.Saving"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void OnSaving(object sender, SavingEventArgs e)
@@ -61,7 +60,7 @@ namespace RecatchLegendaryFish
             this.Stash.Value.Restore(); // just in case something weird happens
         }
 
-        /// <summary>Raised after the game state is updated (≈60 times per second).</summary>
+        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         void OnUpdateTicked(object sender, UpdateTickedEventArgs e)
@@ -81,7 +80,7 @@ namespace RecatchLegendaryFish
                 stash.Restore();
         }
 
-        /// <summary>Raised after the player presses or releases any buttons on the keyboard, controller, or mouse.</summary>
+        /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
         private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
