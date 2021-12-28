@@ -29,7 +29,7 @@ Japanese   | ❑                      | ❑
 Korean     | ❑                      | ❑
 Portuguese | ❑                      | [✓](TimeSpeed/i18n/pt.json)
 Russian    | ❑                      | ❑
-Spanish    | ❑                      | ❑
+Spanish    | ❑                      | [✓](TimeSpeed/i18n/es.json)
 Turkish    | ❑                      | ❑
 
 ## Compiling the mods
