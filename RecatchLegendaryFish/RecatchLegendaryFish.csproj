@@ -2,7 +2,6 @@
   <PropertyGroup>
     <Version>1.7.0</Version>
     <TargetFramework>net5.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,4 +10,5 @@
   </ItemGroup>
 
   <Import Project="..\_Common\_Common.projitems" Label="Shared" />
+  <Import Project="..\common.targets" />
 </Project>
