@@ -1,7 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyName>AllProfessions</AssemblyName>
-    <RootNamespace>AllProfessions</RootNamespace>
     <Version>1.4.4</Version>
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>

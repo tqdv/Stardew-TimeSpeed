@@ -1,7 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyName>TimeSpeed</AssemblyName>
-    <RootNamespace>TimeSpeed</RootNamespace>
     <Version>2.5.1</Version>
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>
