@@ -3,24 +3,25 @@
     ** In-game messages
     *********/
     // changed manually
-    "message.config-reloaded": "Time feels differently now...",
-    "message.speed-changed": "10 minutes feels like {{seconds}} seconds.",
-    "message.time-stopped": "Hey, you stopped the time!",
-    "message.time-resumed": "Time feels as usual now...",
+    "message.config-reloaded": "O tempo parece diferente agora...",
+    "message.speed-changed": "10 minutos parecem como {{seconds}} segundos.",
+    "message.time-stopped": "Aí, você parou o tempo!",
+    "message.time-resumed": "O tempo parece normal agora...",
 
     // changed based on time
-    "message.on-time-change.time-stopped": "Time suddenly stops...",
+    "message.on-time-change.time-stopped": "O tempo súbitamente congela...",
 
     // changed based on location
-    "message.on-location-change.time-stopped-globally": "Looks like time stopped everywhere...",
-    "message.on-location-change.time-stopped-here": "It feels like time is frozen here...",
-    "message.on-location-change.time-speed-here": "10 minutes feels more like {{seconds}} seconds here...",
+    "message.on-location-change.time-stopped-globally": "Parece que você parou o tempo globalmente...",
+    "message.on-location-change.time-stopped-here": "Parece que o tempo está congelado aqui...",
+    "message.on-location-change.time-speed-here": "10 minutos parecem mais como {{seconds}} segundos aqui...",
 
 
     /*********
     ** Generic Mod Config Menu UI
     *********/
     // general options
+    // TODO
     "config.general-options": "General options",
     "config.enable-on-festival-days.name": "Enable on festival days",
     "config.enable-on-festival-days.desc": "Whether to change tick length on festival days.",
@@ -28,6 +29,7 @@
     "config.location-notify.desc": "Whether to show a message about the time settings when you enter a location.",
 
     // seconds per minute section
+    // TODO
     "config.seconds-per-minute": "Seconds per minute",
     "config.indoors-speed.name": "Indoors",
     "config.indoors-speed.desc": "The number of seconds per in-game minute while indoors.",
@@ -41,6 +43,7 @@
     "config.volcano-dungeon-speed.desc": "The number of seconds per in-game minute while in the Volcano Dungeon.",
 
     // freeze time section
+    // TODO
     "config.freeze-time": "Freeze time",
     "config.anywhere-at-time.name": "Freeze time at",
     "config.anywhere-at-time.desc": "The time at which to freeze time everywhere. This should be 24-hour military time, from 600 (6am) to 2400 (midnight) and 2600 (2am). You can set it to 2600 to disable it.",
@@ -58,6 +61,7 @@
     "config.freeze-time-custom.desc": "The names of custom locations in which to freeze time. Location names can be seen in-game using the Debug Mode mod. You can list multiple with commas.",
 
     // controls
+    // TODO
     "config.controls": "Controls",
     "config.freeze-time-key.name": "Freeze time",
     "config.freeze-time-key.desc": "The key which freezes or unfreezes time. Freezing time will stay in effect until you unfreeze it; unfreezing time will stay in effect until you enter a new location with time settings.",
