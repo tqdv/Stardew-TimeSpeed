@@ -53,4 +53,4 @@ To package a mod for release:
 
 1. Switch to `Release` build configuration.
 2. Recompile the mod per the previous section.
-3. Upload the generated `<mod name>-<version>.zip` file from the project's `bin` folder.
+3. Upload the generated `<mod name>-<version>.zip` file from the solution's `_releases` folder.
