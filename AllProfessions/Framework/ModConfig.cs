@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
+using StardewModdingAPI;
 
 namespace AllProfessions.Framework
 {
@@ -24,6 +26,33 @@ namespace AllProfessions.Framework
             return
                 this.IgnoreProfessions.Contains(profession.ToString())
                 || this.IgnoreProfessions.Contains(((int)profession).ToString());
+        }
+
+        /// <summary>Normalize the configured profession values.</summary>
+        /// <returns>Returns whether any changes were made.</returns>
+        public bool Normalize(IMonitor monitor)
+        {
+            bool changed = false;
+
+            foreach (string raw in this.IgnoreProfessions.ToArray())
+            {
+                if (!Enum.TryParse<Profession>(raw, ignoreCase: true, out Profession profession))
+                {
+                    monitor.Log($"Ignored unknown profession name '{raw}' in the mod configuration.");
+                    this.IgnoreProfessions.Remove(raw);
+                    changed = true;
+                    continue;
+                }
+
+                if (profession.ToString() != raw)
+                {
+                    this.IgnoreProfessions.Remove(raw);
+                    this.IgnoreProfessions.Add(profession.ToString());
+                    changed = true;
+                }
+            }
+
+            return changed;
         }
 
 

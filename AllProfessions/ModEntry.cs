@@ -34,6 +34,8 @@ namespace AllProfessions
         {
             // read config
             this.Config = helper.ReadConfig<ModConfig>();
+            if (this.Config.Normalize(this.Monitor))
+                helper.WriteConfig(this.Config);
 
             // read data
             this.ProfessionMap = this.GetProfessionMap(this.Helper.Data.ReadJsonFile<ModData>("assets/data.json")).ToArray();
