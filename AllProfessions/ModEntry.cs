@@ -32,6 +32,8 @@ namespace AllProfessions
         /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
+            I18n.Init(helper.Translation);
+
             // read config
             this.Config = helper.ReadConfig<ModConfig>();
             if (this.Config.Normalize(this.Monitor))
@@ -55,6 +57,7 @@ namespace AllProfessions
             }
 
             // hook event
+            helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
             helper.Events.GameLoop.DayStarted += this.OnDayStarted;
         }
 
@@ -65,6 +68,22 @@ namespace AllProfessions
         /****
         ** Event handlers
         ****/
+        /// <inheritdoc cref="IGameLoopEvents.GameLaunched"/>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
+        private void OnGameLaunched(object sender, GameLaunchedEventArgs e)
+        {
+            GenericModConfigMenuIntegration.Register(this.ModManifest, this.Helper.ModRegistry, this.Monitor, this.ProfessionMap,
+                () => this.Config,
+                reset: () => this.Config = new(),
+                save: () =>
+                {
+                    this.Config.Normalize(this.Monitor);
+                    this.Helper.WriteConfig(this.Config);
+                }
+            );
+        }
+
         /// <inheritdoc cref="IGameLoopEvents.DayStarted"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
