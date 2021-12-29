@@ -74,7 +74,7 @@ namespace AllProfessions
         private void OnGameLaunched(object sender, GameLaunchedEventArgs e)
         {
             GenericModConfigMenuIntegration.Register(this.ModManifest, this.Helper.ModRegistry, this.Monitor, this.ProfessionMap,
-                () => this.Config,
+                getConfig: () => this.Config,
                 reset: () => this.Config = new(),
                 save: () =>
                 {

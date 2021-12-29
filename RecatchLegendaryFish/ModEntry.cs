@@ -1,4 +1,3 @@
-using cantorsdust.Common.Integrations;
 using RecatchLegendaryFish.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -53,7 +52,11 @@ namespace RecatchLegendaryFish
         /// <param name="e">The event arguments.</param>
         private void OnGameLaunched(object sender, GameLaunchedEventArgs e)
         {
-            this.IntegrateGenericConfigMenu();
+            GenericModConfigMenuIntegration.Register(this.ModManifest, this.Helper.ModRegistry, this.Monitor,
+                getConfig: () => this.Config,
+                reset: () => this.Config = new(),
+                save: () => this.Helper.WriteConfig(this.Config)
+            );
         }
 
         /// <inheritdoc cref="IGameLoopEvents.SaveLoaded"/>
@@ -111,32 +114,6 @@ namespace RecatchLegendaryFish
                 ? I18n.Message_Enabled(key: key)
                 : I18n.Message_Disabled(key: key);
             Game1.addHUDMessage(new HUDMessage(message, HUDMessage.newQuest_type) { timeLeft = 2500 });
-        }
-
-        /// <summary>Add a config UI to Generic Mod Config Menu if it's installed.</summary>
-        private void IntegrateGenericConfigMenu()
-        {
-            // get API
-            IGenericModConfigMenuApi api = IntegrationHelper.GetGenericModConfigMenu(this.Helper.ModRegistry, this.Monitor);
-            if (api == null)
-                return;
-
-            // register config UI
-            api.Register(
-                mod: this.ModManifest,
-                reset: () => this.Config = new(),
-                save: () => this.Helper.WriteConfig(this.Config)
-            );
-
-            // fruit tree section
-            api.AddSectionTitle(this.ModManifest, I18n.Config_Controls);
-            api.AddKeybindList(
-                this.ModManifest,
-                name: I18n.Config_ToggleKey_Name,
-                tooltip: I18n.Config_ToggleKey_Desc,
-                getValue: () => this.Config.ToggleKey,
-                setValue: value => this.Config.ToggleKey = value
-            );
         }
     }
 }

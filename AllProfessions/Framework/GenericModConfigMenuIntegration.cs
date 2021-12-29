@@ -14,6 +14,13 @@ namespace AllProfessions.Framework
         ** Public methods
         *********/
         /// <summary>Add a config UI to Generic Mod Config Menu if it's installed.</summary>
+        /// <param name="manifest">The mod manifest.</param>
+        /// <param name="modRegistry">The mod registry from which to get the API.</param>
+        /// <param name="monitor">The monitor with which to log errors.</param>
+        /// <param name="professionData">The professions by skill and level requirement.</param>
+        /// <param name="getConfig">Get the current mod configuration.</param>
+        /// <param name="reset">Reset the config to its default values.</param>
+        /// <param name="save">Save the current config to the <c>config.json</c> file.</param>
         public static void Register(IManifest manifest, IModRegistry modRegistry, IMonitor monitor, ModDataProfessions[] professionData, Func<ModConfig> getConfig, Action reset, Action save)
         {
             // get API

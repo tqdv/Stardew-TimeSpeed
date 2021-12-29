@@ -1,6 +1,4 @@
 using System;
-using System.Linq;
-using cantorsdust.Common.Integrations;
 using Microsoft.Xna.Framework.Input;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -99,7 +97,16 @@ namespace TimeSpeed
         /// <param name="e">The event arguments.</param>
         private void OnGameLaunched(object sender, GameLaunchedEventArgs e)
         {
-            this.IntegrateGenericConfigMenu();
+            GenericModConfigMenuIntegration.Register(this.ModManifest, this.Helper.ModRegistry, this.Monitor,
+                getConfig: () => this.Config,
+                reset: () => this.Config = new(),
+                save: () =>
+                {
+                    this.Helper.WriteConfig(this.Config);
+                    if (Context.IsWorldReady && this.ShouldEnable())
+                        this.UpdateSettingsForLocation(Game1.currentLocation);
+                }
+            );
         }
 
         /// <inheritdoc cref="IGameLoopEvents.SaveLoaded"/>
@@ -373,187 +380,6 @@ namespace TimeSpeed
                 return AutoFreezeReason.FrozenAtTime;
 
             return AutoFreezeReason.None;
-        }
-
-        /// <summary>Add a config UI to Generic Mod Config Menu if it's installed.</summary>
-        private void IntegrateGenericConfigMenu()
-        {
-            // get API
-            IGenericModConfigMenuApi api = IntegrationHelper.GetGenericModConfigMenu(this.Helper.ModRegistry, this.Monitor);
-            if (api == null)
-                return;
-
-            // register config UI
-            api.Register(
-                mod: this.ModManifest,
-                reset: () => this.Config = new(),
-                save: () =>
-                {
-                    this.Helper.WriteConfig(this.Config);
-                    if (Context.IsWorldReady && this.ShouldEnable())
-                        this.UpdateSettingsForLocation(Game1.currentLocation);
-                }
-            );
-
-            // general options
-            api.AddSectionTitle(this.ModManifest, I18n.Config_GeneralOptions);
-            api.AddBoolOption(
-                this.ModManifest,
-                name: I18n.Config_EnableOnFestivalDays_Name,
-                tooltip: I18n.Config_EnableOnFestivalDays_Desc,
-                getValue: () => this.Config.EnableOnFestivalDays,
-                setValue: value => this.Config.EnableOnFestivalDays = value
-            );
-            api.AddBoolOption(
-                this.ModManifest,
-                name: I18n.Config_LocationNotify_Name,
-                tooltip: I18n.Config_LocationNotify_Desc,
-                getValue: () => this.Config.LocationNotify,
-                setValue: value => this.Config.LocationNotify = value
-            );
-
-            // seconds per minute section
-            api.AddSectionTitle(this.ModManifest, I18n.Config_SecondsPerMinute);
-            api.AddNumberOption(
-                this.ModManifest,
-                name: I18n.Config_IndoorsSpeed_Name,
-                tooltip: I18n.Config_IndoorsSpeed_Desc,
-                getValue: () => (float)this.Config.SecondsPerMinute.Indoors,
-                setValue: value => this.Config.SecondsPerMinute.Indoors = Math.Round(value, 2),
-                min: 0.1f,
-                max: 60f,
-                interval: 0.1f
-            );
-            api.AddNumberOption(
-                this.ModManifest,
-                name: I18n.Config_OutdoorsSpeed_Name,
-                tooltip: I18n.Config_OutdoorsSpeed_Desc,
-                getValue: () => (float)this.Config.SecondsPerMinute.Outdoors,
-                setValue: value => this.Config.SecondsPerMinute.Outdoors = Math.Round(value, 2),
-                min: 0.1f,
-                max: 60f,
-                interval: 0.1f
-            );
-            api.AddNumberOption(
-                this.ModManifest,
-                name: I18n.Config_MineSpeed_Name,
-                tooltip: I18n.Config_MineSpeed_Desc,
-                getValue: () => (float)this.Config.SecondsPerMinute.Mines,
-                setValue: value => this.Config.SecondsPerMinute.Mines = Math.Round(value, 2),
-                min: 0.1f,
-                max: 60f,
-                interval: 0.1f
-            );
-            api.AddNumberOption(
-                this.ModManifest,
-                name: I18n.Config_SkullCavernSpeed_Name,
-                tooltip: I18n.Config_SkullCavernSpeed_Desc,
-                getValue: () => (float)this.Config.SecondsPerMinute.SkullCavern,
-                setValue: value => this.Config.SecondsPerMinute.SkullCavern = Math.Round(value, 2),
-                min: 0.1f,
-                max: 60f,
-                interval: 0.1f
-            );
-            api.AddNumberOption(
-                this.ModManifest,
-                name: I18n.Config_VolcanoDungeonSpeed_Name,
-                tooltip: I18n.Config_VolcanoDungeonSpeed_Desc,
-                getValue: () => (float)this.Config.SecondsPerMinute.VolcanoDungeon,
-                setValue: value => this.Config.SecondsPerMinute.VolcanoDungeon = Math.Round(value, 2),
-                min: 0.1f,
-                max: 60f,
-                interval: 0.1f
-            );
-
-            // freeze time
-            api.AddSectionTitle(this.ModManifest, I18n.Config_FreezeTime);
-            api.AddNumberOption(
-                this.ModManifest,
-                name: I18n.Config_AnywhereAtTime_Name,
-                tooltip: I18n.Config_AnywhereAtTime_Desc,
-                getValue: () => this.Config.FreezeTime.AnywhereAtTime ?? 2600,
-                setValue: value => this.Config.FreezeTime.AnywhereAtTime = (value == 2600 ? null : value),
-                min: 600,
-                max: 2600
-            );
-            api.AddBoolOption(
-                this.ModManifest,
-                name: I18n.Config_FreezeTimeIndoors_Name,
-                tooltip: I18n.Config_FreezeTimeIndoors_Desc,
-                getValue: () => this.Config.FreezeTime.Indoors,
-                setValue: value => this.Config.FreezeTime.Indoors = value
-            );
-            api.AddBoolOption(
-                this.ModManifest,
-                name: I18n.Config_FreezeTimeOutdoors_Name,
-                tooltip: I18n.Config_FreezeTimeOutdoors_Desc,
-                getValue: () => this.Config.FreezeTime.Outdoors,
-                setValue: value => this.Config.FreezeTime.Outdoors = value
-            );
-            api.AddBoolOption(
-                this.ModManifest,
-                name: I18n.Config_FreezeTimeMine_Name,
-                tooltip: I18n.Config_FreezeTimeMine_Desc,
-                getValue: () => this.Config.FreezeTime.Mines,
-                setValue: value => this.Config.FreezeTime.Mines = value
-            );
-            api.AddBoolOption(
-                this.ModManifest,
-                name: I18n.Config_FreezeTimeSkullCavern_Name,
-                tooltip: I18n.Config_FreezeTimeSkullCavern_Desc,
-                getValue: () => this.Config.FreezeTime.SkullCavern,
-                setValue: value => this.Config.FreezeTime.SkullCavern = value
-            );
-            api.AddBoolOption(
-                this.ModManifest,
-                name: I18n.Config_FreezeTimeVolcanoDungeon_Name,
-                tooltip: I18n.Config_FreezeTimeVolcanoDungeon_Desc,
-                getValue: () => this.Config.FreezeTime.VolcanoDungeon,
-                setValue: value => this.Config.FreezeTime.VolcanoDungeon = value
-            );
-            api.AddTextOption(
-                this.ModManifest,
-                name: I18n.Config_FreezeTimeCustom_Name,
-                tooltip: I18n.Config_FreezeTimeCustom_Desc,
-                getValue: () => string.Join(", ", this.Config.FreezeTime.ByLocationName),
-                setValue: value => this.Config.FreezeTime.ByLocationName = new(
-                    value
-                        .Split(",")
-                        .Select(p => p.Trim())
-                        .Where(p => p != string.Empty)
-                )
-            );
-
-            // controls
-            api.AddSectionTitle(this.ModManifest, I18n.Config_Controls);
-            api.AddKeybindList(
-                this.ModManifest,
-                name: I18n.Config_FreezeTimeKey_Name,
-                tooltip: I18n.Config_FreezeTimeKey_Desc,
-                getValue: () => this.Config.Keys.FreezeTime,
-                setValue: value => this.Config.Keys.FreezeTime = value
-            );
-            api.AddKeybindList(
-                this.ModManifest,
-                name: I18n.Config_SlowTimeKey_Name,
-                tooltip: I18n.Config_SlowTimeKey_Desc,
-                getValue: () => this.Config.Keys.IncreaseTickInterval,
-                setValue: value => this.Config.Keys.IncreaseTickInterval = value
-            );
-            api.AddKeybindList(
-                this.ModManifest,
-                name: I18n.Config_SpeedUpTimeKey_Name,
-                tooltip: I18n.Config_SpeedUpTimeKey_Desc,
-                getValue: () => this.Config.Keys.DecreaseTickInterval,
-                setValue: value => this.Config.Keys.DecreaseTickInterval = value
-            );
-            api.AddKeybindList(
-                this.ModManifest,
-                name: I18n.Config_ReloadKey_Name,
-                tooltip: I18n.Config_ReloadKey_Desc,
-                getValue: () => this.Config.Keys.ReloadConfig,
-                setValue: value => this.Config.Keys.ReloadConfig = value
-            );
         }
     }
 }
