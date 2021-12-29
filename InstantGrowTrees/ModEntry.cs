@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using cantorsdust.Common.Integrations;
 using InstantGrowTrees.Framework;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
@@ -30,7 +31,10 @@ namespace InstantGrowTrees
         /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
+            I18n.Init(helper.Translation);
+
             this.Config = helper.ReadConfig<ModConfig>();
+            helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
             helper.Events.GameLoop.DayStarted += this.OnDayStarted;
         }
 
@@ -41,6 +45,14 @@ namespace InstantGrowTrees
         /****
         ** Event handlers
         ****/
+        /// <inheritdoc cref="IGameLoopEvents.GameLaunched"/>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
+        private void OnGameLaunched(object sender, GameLaunchedEventArgs e)
+        {
+            this.IntegrateGenericConfigMenu();
+        }
+
         /// <inheritdoc cref="IGameLoopEvents.DayStarted"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
@@ -209,6 +221,77 @@ namespace InstantGrowTrees
                 || location.IsGreenhouse
                 || !location.IsOutdoors
                 || location is Desert;
+        }
+
+        /// <summary>Add a config UI to Generic Mod Config Menu if it's installed.</summary>
+        private void IntegrateGenericConfigMenu()
+        {
+            // get API
+            IGenericModConfigMenuApi api = IntegrationHelper.GetGenericModConfigMenu(this.Helper.ModRegistry, this.Monitor);
+            if (api == null)
+                return;
+
+            // register config UI
+            api.Register(
+                mod: this.ModManifest,
+                reset: () => this.Config = new(),
+                save: () => this.Helper.WriteConfig(this.Config)
+            );
+
+            // fruit tree section
+            api.AddSectionTitle(this.ModManifest, I18n.Config_FruitTrees);
+            api.AddBoolOption(
+                this.ModManifest,
+                name: I18n.Config_FruitTrees_InstantlyAge_Name,
+                tooltip: I18n.Config_FruitTrees_InstantlyAge_Desc,
+                getValue: () => this.Config.FruitTrees.InstantlyAge,
+                setValue: value => this.Config.FruitTrees.InstantlyAge = value
+            );
+            api.AddBoolOption(
+                this.ModManifest,
+                name: I18n.Config_FruitTrees_InstantlyGrow_Name,
+                tooltip: I18n.Config_FruitTrees_InstantlyGrow_Desc,
+                getValue: () => this.Config.FruitTrees.InstantlyGrow,
+                setValue: value => this.Config.FruitTrees.InstantlyGrow = value
+            );
+            api.AddBoolOption(
+                this.ModManifest,
+                name: I18n.Config_FruitTrees_InstantlyGrowInWinter_Name,
+                tooltip: I18n.Config_FruitTrees_InstantlyGrowInWinter_Desc,
+                getValue: () => this.Config.FruitTrees.InstantlyGrowInWinter,
+                setValue: value => this.Config.FruitTrees.InstantlyGrowInWinter = value
+            );
+            api.AddBoolOption(
+                this.ModManifest,
+                name: I18n.Config_FruitTrees_InstantlyGrowWhenInvalid_Name,
+                tooltip: I18n.Config_FruitTrees_InstantlyGrowWhenInvalid_Desc,
+                getValue: () => this.Config.FruitTrees.InstantlyGrowWhenInvalid,
+                setValue: value => this.Config.FruitTrees.InstantlyGrowWhenInvalid = value
+            );
+
+            // non-fruit tree section
+            api.AddSectionTitle(this.ModManifest, I18n.Config_Trees);
+            api.AddBoolOption(
+                this.ModManifest,
+                name: I18n.Config_Trees_InstantlyGrow_Name,
+                tooltip: I18n.Config_Trees_InstantlyGrow_Desc,
+                getValue: () => this.Config.FruitTrees.InstantlyGrow,
+                setValue: value => this.Config.FruitTrees.InstantlyGrow = value
+            );
+            api.AddBoolOption(
+                this.ModManifest,
+                name: I18n.Config_Trees_InstantlyGrowInWinter_Name,
+                tooltip: I18n.Config_Trees_InstantlyGrowInWinter_Desc,
+                getValue: () => this.Config.FruitTrees.InstantlyGrowInWinter,
+                setValue: value => this.Config.FruitTrees.InstantlyGrowInWinter = value
+            );
+            api.AddBoolOption(
+                this.ModManifest,
+                name: I18n.Config_Trees_InstantlyGrowWhenInvalid_Name,
+                tooltip: I18n.Config_Trees_InstantlyGrowWhenInvalid_Desc,
+                getValue: () => this.Config.FruitTrees.InstantlyGrowWhenInvalid,
+                setValue: value => this.Config.FruitTrees.InstantlyGrowWhenInvalid = value
+            );
         }
     }
 }

@@ -1,3 +1,4 @@
+using cantorsdust.Common.Integrations;
 using RecatchLegendaryFish.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -33,6 +34,7 @@ namespace RecatchLegendaryFish
 
             this.Config = helper.ReadConfig<ModConfig>();
 
+            helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
             helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
             helper.Events.GameLoop.Saving += this.OnSaving;
             helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
@@ -46,6 +48,14 @@ namespace RecatchLegendaryFish
         /****
         ** Event handlers
         ****/
+        /// <inheritdoc cref="IGameLoopEvents.GameLaunched"/>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
+        private void OnGameLaunched(object sender, GameLaunchedEventArgs e)
+        {
+            this.IntegrateGenericConfigMenu();
+        }
+
         /// <inheritdoc cref="IGameLoopEvents.SaveLoaded"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
@@ -101,6 +111,32 @@ namespace RecatchLegendaryFish
                 ? I18n.Message_Enabled(key: key)
                 : I18n.Message_Disabled(key: key);
             Game1.addHUDMessage(new HUDMessage(message, HUDMessage.newQuest_type) { timeLeft = 2500 });
+        }
+
+        /// <summary>Add a config UI to Generic Mod Config Menu if it's installed.</summary>
+        private void IntegrateGenericConfigMenu()
+        {
+            // get API
+            IGenericModConfigMenuApi api = IntegrationHelper.GetGenericModConfigMenu(this.Helper.ModRegistry, this.Monitor);
+            if (api == null)
+                return;
+
+            // register config UI
+            api.Register(
+                mod: this.ModManifest,
+                reset: () => this.Config = new(),
+                save: () => this.Helper.WriteConfig(this.Config)
+            );
+
+            // fruit tree section
+            api.AddSectionTitle(this.ModManifest, I18n.Config_Controls);
+            api.AddKeybindList(
+                this.ModManifest,
+                name: I18n.Config_ToggleKey_Name,
+                tooltip: I18n.Config_ToggleKey_Desc,
+                getValue: () => this.Config.ToggleKey,
+                setValue: value => this.Config.ToggleKey = value
+            );
         }
     }
 }

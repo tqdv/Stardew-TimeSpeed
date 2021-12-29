@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Added in-game config UI via [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098).
 * Overhauled configuration in `config.json`:
   * Time speed is now measured in seconds/minute (instead of seconds/10-minutes) for simplicity.
   * Split `TickLengthByLocation` into `SecondsPerMinute` and `FreezeTime` fields for clarity.

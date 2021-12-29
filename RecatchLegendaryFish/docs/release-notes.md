@@ -1,6 +1,9 @@
 ﻿﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Added in-game config UI via [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098).
+
 ## 1.7
 Released 26 March 2021 for SMAPI 3.9.5 or later. Updated by Pathoschild.
 

@@ -18,19 +18,19 @@ on the wiki for help contributing translations.
 
 (❑ = untranslated, ↻ = partly translated, ✓ = fully translated)
 
-&nbsp;     | Recatch Legendary Fish | TimeSpeed
----------- | :--------------------- | :-------
-Chinese    | ❑                      | [✓](TimeSpeed/i18n/pt.json)
-French     | ❑                      | ❑
-German     | ❑                      | ❑
-Hungarian  | ❑                      | ❑
-Italian    | ❑                      | ❑
-Japanese   | ❑                      | ❑
-Korean     | ❑                      | ❑
-Portuguese | ❑                      | [✓](TimeSpeed/i18n/pt.json)
-Russian    | ❑                      | ❑
-Spanish    | ❑                      | [✓](TimeSpeed/i18n/es.json)
-Turkish    | ❑                      | ❑
+&nbsp;     | Instant Grow Trees | Recatch Legendary Fish | TimeSpeed
+---------- | :----------------- | :--------------------- | :--------------------------
+Chinese    | ❑                  | ❑                      | [↻](TimeSpeed/i18n/pt.json)
+French     | ❑                  | ❑                      | ❑
+German     | ❑                  | ❑                      | ❑
+Hungarian  | ❑                  | ❑                      | ❑
+Italian    | ❑                  | ❑                      | ❑
+Japanese   | ❑                  | ❑                      | ❑
+Korean     | ❑                  | ❑                      | ❑
+Portuguese | ❑                  | ❑                      | [↻](TimeSpeed/i18n/pt.json)
+Russian    | ❑                  | ❑                      | ❑
+Spanish    | ❑                  | ❑                      | [↻](TimeSpeed/i18n/es.json)
+Turkish    | ❑                  | ❑                      | ❑
 
 ## Compiling the mods
 Installing stable releases from Nexus Mods is recommended for most users. If you really want to
