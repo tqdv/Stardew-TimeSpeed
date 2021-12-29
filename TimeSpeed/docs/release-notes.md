@@ -2,7 +2,15 @@
 
 # Release notes
 ## Upcoming release
+* Overhauled configuration in `config.json`:
+  * Time speed is now measured in seconds/minute (instead of seconds/10-minutes) for simplicity.
+  * Split `TickLengthByLocation` into `SecondsPerMinute` and `FreezeTime` fields for clarity.
+  * Removed `DefaultTickLength` (no longer needed with above changes).
 * Improved translations. Thanks to Pedrowser (added Portuguese), xingmot (added Chinese), and Yllelder (added Spanish)!
+
+**Update note:**  
+If you previously customized the `TickLengthByLocation` or `DefaultTickLength`, you'll need to
+reconfigure the mod using the new options.
 
 ## 2.5.1
 Released 27 November 2021 for SMAPI 3.12.5 or later. Updated by Pathoschild.

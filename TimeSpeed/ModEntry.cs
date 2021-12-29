@@ -39,7 +39,7 @@ namespace TimeSpeed
         /// <summary>Backing field for <see cref="TickInterval"/>.</summary>
         private int _tickInterval;
 
-        /// <summary>The number of seconds per 10-game-minutes to apply.</summary>
+        /// <summary>The number of milliseconds per 10-game-minutes to apply.</summary>
         private int TickInterval
         {
             get => this._tickInterval;
@@ -286,8 +286,7 @@ namespace TimeSpeed
 
             // update time settings
             this.UpdateTimeFreeze();
-            if (this.Config.GetTickInterval(location) != null)
-                this.TickInterval = this.Config.GetTickInterval(location) ?? this.TickInterval;
+            this.TickInterval = this.Config.GetMillisecondsPerMinute(location) * 10;
 
             // notify player
             if (this.Config.LocationNotify)
