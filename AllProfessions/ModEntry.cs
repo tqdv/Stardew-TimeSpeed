@@ -19,8 +19,11 @@ namespace AllProfessions
         /// <summary>The MD5 hash of the data.json, used to detect when the file is edited.</summary>
         private readonly string DataFileHash = "a3b6882bf1d9026055423b73cbe05e50";
 
-        /// <summary>Professions to gain for each level. Each entry represents the skill, level requirement, and profession IDs.</summary>
-        private ModDataProfessions[] ProfessionsToGain;
+        /// <summary>The professions by skill and level requirement.</summary>
+        private ModDataProfessions[] ProfessionMap;
+
+        /// <summary>The mod configuration.</summary>
+        private ModConfig Config;
 
 
         /*********
@@ -29,9 +32,12 @@ namespace AllProfessions
         /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
+            // read config
+            this.Config = helper.ReadConfig<ModConfig>();
+
             // read data
-            this.ProfessionsToGain = this.GetProfessionsToGain(this.Helper.Data.ReadJsonFile<ModData>("assets/data.json")).ToArray();
-            if (!this.ProfessionsToGain.Any())
+            this.ProfessionMap = this.GetProfessionMap(this.Helper.Data.ReadJsonFile<ModData>("assets/data.json")).ToArray();
+            if (!this.ProfessionMap.Any())
             {
                 this.Monitor.Log("The data.json file is missing or invalid; try reinstalling the mod.", LogLevel.Error);
                 return;
@@ -81,9 +87,9 @@ namespace AllProfessions
             return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
         }
 
-        /// <summary>Get the profession levels to gain for each skill level.</summary>
+        /// <summary>Get the professions by skill and level requirement.</summary>
         /// <param name="data">The underlying mod data.</param>
-        private IEnumerable<ModDataProfessions> GetProfessionsToGain(ModData data)
+        private IEnumerable<ModDataProfessions> GetProfessionMap(ModData data)
         {
             if (data?.ProfessionsToGain == null)
                 yield break;
@@ -100,10 +106,14 @@ namespace AllProfessions
         {
             // get missing professions
             List<Profession> expectedProfessions = new List<Profession>();
-            foreach (ModDataProfessions entry in this.ProfessionsToGain)
+            foreach (ModDataProfessions entry in this.ProfessionMap)
             {
                 if (Game1.player.getEffectiveSkillLevel((int)entry.Skill) >= entry.Level)
-                    expectedProfessions.AddRange(entry.Professions);
+                {
+                    expectedProfessions.AddRange(
+                        entry.Professions.Where(profession => !this.Config.ShouldIgnore(profession))
+                    );
+                }
             }
 
             // add professions

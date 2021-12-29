@@ -1,6 +1,9 @@
 ﻿﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Added `config.json` file to disable professions.
+
 ## 1.4.4
 Released 26 March 2021 for SMAPI 3.9.5 or later. Updated by Pathoschild.
 
