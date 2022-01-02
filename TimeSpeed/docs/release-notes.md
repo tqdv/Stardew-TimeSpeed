@@ -1,6 +1,9 @@
 ﻿﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Add option to exclude specific location names from time freeze.
+
 ## 2.6.0
 Released 29 December 2021 for SMAPI 3.13.0 or later. Updated by Pathoschild.
 
