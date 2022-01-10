@@ -34,6 +34,10 @@ namespace TimeSpeed.Framework
         /// <remarks>Location names can be seen in-game using the <a href="https://www.nexusmods.com/stardewvalley/mods/679">Debug Mode</a> mod.</remarks>
         public HashSet<string> ByLocationName { get; set; } = new(StringComparer.OrdinalIgnoreCase);
 
+        /// <summary>The names of custom locations in which time shouldn't be frozen regardless of the previous settings.</summary>
+        /// <remarks>See remarks on <see cref="ByLocationName"/>.</remarks>
+        public HashSet<string> ExceptLocationNames { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+
 
         /*********
         ** Public methods
@@ -42,7 +46,7 @@ namespace TimeSpeed.Framework
         /// <param name="location">The location to check.</param>
         public bool ShouldFreeze(GameLocation location)
         {
-            if (location == null)
+            if (location == null || this.ExceptLocationNames.Contains(location.Name))
                 return false;
 
             // by location name
@@ -81,6 +85,7 @@ namespace TimeSpeed.Framework
         private void OnDeserializedMethod(StreamingContext context)
         {
             this.ByLocationName = new(this.ByLocationName ?? new(), StringComparer.OrdinalIgnoreCase);
+            this.ExceptLocationNames = new(this.ExceptLocationNames ?? new(), StringComparer.OrdinalIgnoreCase);
         }
     }
 }
