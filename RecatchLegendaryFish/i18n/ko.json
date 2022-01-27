@@ -1,4 +1,4 @@
-{
+﻿{
     /*********
     ** In-game messages
     *********/
@@ -9,7 +9,7 @@
     /*********
     ** Generic Mod Config Menu UI
     *********/
-    "config.controls": "컨트롤 ",
+    "config.controls": "컨트롤",
     "config.toggle-key.name": "활성화 키",
     "config.toggle-key.desc": "전설적인 물고기를 다시 잡을 수 있는지 여부를 토글하는 키바인드."
 }
