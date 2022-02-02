@@ -40,13 +40,13 @@ namespace AllProfessions.Framework
                         name: () => GetDisplayName(profession),
                         tooltip: () => GetTooltip(skill, level, profession),
                         getValue: () => !getConfig().ShouldIgnore(profession),
-                        setValue: value =>
+                        setValue: shouldAdd =>
                         {
                             var config = getConfig();
 
                             config.IgnoreProfessions.Remove(profession.ToString());
                             config.IgnoreProfessions.Remove(((int)profession).ToString());
-                            if (value)
+                            if (!shouldAdd)
                                 config.IgnoreProfessions.Add(profession.ToString());
                         }
                     );

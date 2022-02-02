@@ -1,6 +1,9 @@
 ﻿﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed settings not saved correctly when changed through [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098).
+
 ## 1.5.0
 Released 29 December 2021 for SMAPI 3.13.0 or later. Updated by Pathoschild.
 
