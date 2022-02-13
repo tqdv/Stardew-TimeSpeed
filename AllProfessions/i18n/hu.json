@@ -1,0 +1,7 @@
+﻿{
+    /*********
+    ** Generic Mod Config Menu UI
+    *********/
+    "config.skill-level": "{{skillName}} {{level}} szint",
+    "config.toggle-skill.desc": "A {{professionName}} jártasság hozzáadása, ha eléri a {{skillName}} képesség {{level}} szintjét."
+}
