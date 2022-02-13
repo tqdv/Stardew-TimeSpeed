@@ -32,12 +32,11 @@ German     | [❑](AllProfessions/i18n) | [❑](InstantGrowTrees/i18n)         |
 Hungarian  | [❑](AllProfessions/i18n) | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
 Italian    | [❑](AllProfessions/i18n) | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
 Japanese   | [❑](AllProfessions/i18n) | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
-Korean     | [❑](AllProfessions/i18n) | [✓](InstantGrowTrees/i18n/ko.json) | [✓](RecatchLegendaryFish/i18n/ko.json) | [↻](TimeSpeed/i18n/ko.json)
+Korean     | [❑](AllProfessions/i18n) | [✓](InstantGrowTrees/i18n/ko.json) | [✓](RecatchLegendaryFish/i18n/ko.json) | [✓](TimeSpeed/i18n/ko.json)
 Portuguese | [❑](AllProfessions/i18n) | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [↻](TimeSpeed/i18n/pt.json)
 Russian    | [❑](AllProfessions/i18n) | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
 Spanish    | [❑](AllProfessions/i18n) | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [↻](TimeSpeed/i18n/es.json)
 Turkish    | [❑](AllProfessions/i18n) | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
-
 
 ## Compiling the mods
 Installing stable releases from Nexus Mods is recommended for most users. If you really want to

@@ -28,7 +28,7 @@
     "config.location-notify.desc": "위치를 입력할 때 시간 설정에 대한 메시지를 표시할지 여부.",
 
     // seconds per minute section
-    "config.seconds-per-min": "분당 초",
+    "config.seconds-per-minute": "분당 초",
     "config.indoors-speed.name": "실내",
     "config.indoors-speed.desc": "실내에 있는 게임 내 분당 시간(초)입니다.",
     "config.outdoors-speed.name": "야외",
