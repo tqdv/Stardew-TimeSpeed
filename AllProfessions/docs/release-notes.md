@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Added config UI intro to clarify that unchecking a profession won't retroactively unlearn it.
 * Fixed settings not saved correctly when changed through [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098).
 * Improved translations. Thanks to martin66789 (added Hungarian)!
 
