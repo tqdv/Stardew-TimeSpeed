@@ -1,8 +1,10 @@
 ﻿﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
-* Added config UI intro to clarify that unchecking a profession won't retroactively unlearn it.
+## 1.5.1
+Released 27 February 2022 for SMAPI 3.13.0 or later. Updated by Pathoschild.
+
+* Added intro in config UI to clarify that unchecking a profession won't retroactively unlearn it.
 * Fixed settings not saved correctly when changed through [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098).
 * Improved translations. Thanks to martin66789 (added Hungarian)!
 
