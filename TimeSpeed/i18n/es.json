@@ -21,26 +21,24 @@
     ** Generic Mod Config Menu UI
     *********/
     // general options
-    // TODO
-    "config.general-options": "General options",
-    "config.enable-on-festival-days.name": "Enable on festival days",
-    "config.enable-on-festival-days.desc": "Whether to change tick length on festival days.",
-    "config.location-notify.name": "Show time info on warp",
-    "config.location-notify.desc": "Whether to show a message about the time settings when you enter a location.",
+    "config.general-options": "Opciones generales",
+    "config.enable-on-festival-days.name": "Habilitar en días de fiesta",
+    "config.enable-on-festival-days.desc": "Si se cambia la longitud de ticks en los días de fiesta.",
+    "config.location-notify.name": "Mostrar información sobre el tiempo en la urdimbre",
+    "config.location-notify.desc": "Si se muestra un mensaje sobre la configuración de la hora al entrar en una ubicación.",
 
     // seconds per minute section
-    // TODO
-    "config.seconds-per-minute": "Seconds per minute",
-    "config.indoors-speed.name": "Indoors",
-    "config.indoors-speed.desc": "The number of seconds per in-game minute while indoors.",
-    "config.outdoors-speed.name": "Outdoors",
-    "config.outdoors-speed.desc": "The number of seconds per in-game minute while outdoors.",
-    "config.mine-speed.name": "Mines",
-    "config.mine-speed.desc": "The number of seconds per in-game minute while in the mines.",
-    "config.skull-cavern-speed.name": "Skull Cavern",
-    "config.skull-cavern-speed.desc": "The number of seconds per in-game minute while in the Skull Cavern.",
-    "config.volcano-dungeon-speed.name": "Volcano Dungeon",
-    "config.volcano-dungeon-speed.desc": "The number of seconds per in-game minute while in the Volcano Dungeon.",
+    "config.seconds-per-minute": "Segundos por minuto",
+    "config.indoors-speed.name": "En interiores",
+    "config.indoors-speed.desc": "El número de segundos por minuto de juego en interiores.",
+    "config.outdoors-speed.name": "En exteriores",
+    "config.outdoors-speed.desc": "El número de segundos por minuto de juego en el exterior.",
+    "config.mine-speed.name": "Minas",
+    "config.mine-speed.desc": "El número de segundos por minuto de juego mientras se está en las minas.",
+    "config.skull-cavern-speed.name": "Caverna de la Calavera",
+    "config.skull-cavern-speed.desc": "El número de segundos por minuto de juego mientras estás en la Caverna de la Calavera.",
+    "config.volcano-dungeon-speed.name": "Mazmorra del Volcán",
+    "config.volcano-dungeon-speed.desc": "El número de segundos por minuto de juego mientras estás en la Mazmorra del Volcán.",
 
     // freeze time section
     // TODO
