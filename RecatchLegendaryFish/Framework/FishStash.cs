@@ -77,7 +77,7 @@ namespace RecatchLegendaryFish.Framework
             // trigger achievement if needed
             Game1.stats.checkForFishingAchievements();
 
-            // clear stache
+            // clear stash
             this.Clear();
         }
 

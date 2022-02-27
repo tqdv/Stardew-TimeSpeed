@@ -36,7 +36,7 @@ namespace AllProfessions.Framework
 
             foreach (string raw in this.IgnoreProfessions.ToArray())
             {
-                if (!Enum.TryParse<Profession>(raw, ignoreCase: true, out Profession profession))
+                if (!Enum.TryParse(raw, ignoreCase: true, out Profession profession))
                 {
                     monitor.Log($"Ignored unknown profession name '{raw}' in the mod configuration.");
                     this.IgnoreProfessions.Remove(raw);
