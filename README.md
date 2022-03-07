@@ -35,7 +35,7 @@ Japanese   | [❑](AllProfessions/i18n)         | [❑](InstantGrowTrees/i18n)  
 Korean     | [❑](AllProfessions/i18n)         | [✓](InstantGrowTrees/i18n/ko.json) | [✓](RecatchLegendaryFish/i18n/ko.json) | [✓](TimeSpeed/i18n/ko.json)
 Portuguese | [❑](AllProfessions/i18n)         | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [↻](TimeSpeed/i18n/pt.json)
 Russian    | [❑](AllProfessions/i18n)         | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
-Spanish    | [❑](AllProfessions/i18n)         | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [↻](TimeSpeed/i18n/es.json)
+Spanish    | [✓](AllProfessions/i18n/es.json) | [✓](InstantGrowTrees/i18n/es.json) | [✓](RecatchLegendaryFish/i18n/es.json) | [✓](TimeSpeed/i18n/es.json)
 Turkish    | [❑](AllProfessions/i18n)         | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
 
 ## Compiling the mods
