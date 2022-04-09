@@ -2,7 +2,7 @@
 
 # Release notes
 ## Upcoming release
-* Improved translations. Thanks to Dracoeris (added Spanish)!
+* Improved translations. Thanks to Dracoeris (added Spanish) and martin66789 (updated Hungarian)!
 
 ## 1.5.1
 Released 27 February 2022 for SMAPI 3.13.0 or later. Updated by Pathoschild.

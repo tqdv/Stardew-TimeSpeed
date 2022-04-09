@@ -29,7 +29,7 @@ on the wiki for help contributing translations.
 Chinese    | [❑](AllProfessions/i18n)         | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [↻](TimeSpeed/i18n/zh.json)
 French     | [❑](AllProfessions/i18n)         | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
 German     | [❑](AllProfessions/i18n)         | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [✓](TimeSpeed/i18n/de.json)
-Hungarian  | [↻](AllProfessions/i18n/hu.json) | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
+Hungarian  | [✓](AllProfessions/i18n/hu.json) | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
 Italian    | [❑](AllProfessions/i18n)         | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
 Japanese   | [❑](AllProfessions/i18n)         | [❑](InstantGrowTrees/i18n)         | [❑](RecatchLegendaryFish/i18n)         | [❑](TimeSpeed/i18n)
 Korean     | [❑](AllProfessions/i18n)         | [✓](InstantGrowTrees/i18n/ko.json) | [✓](RecatchLegendaryFish/i18n/ko.json) | [✓](TimeSpeed/i18n/ko.json)
