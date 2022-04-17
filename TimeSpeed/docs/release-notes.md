@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Reduced the max seconds-per-minute in the config UI from 60 to 15 (which is still 5 hours per in-game day).
+* The keybinds are now ignored while viewing a cutscene.
 * Improved translations. Thanks to Dracoeris (updated Spanish)!
 
 ## 2.7.1
