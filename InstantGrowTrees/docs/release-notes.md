@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Fixed in-game config UI not saving non-fruit tree options correctly.
 * Improved translations. Thanks to Dracoeris (added Spanish)!
 
 ## 1.6.1
