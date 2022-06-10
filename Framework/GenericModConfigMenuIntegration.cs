@@ -30,7 +30,7 @@ namespace TimeSpeed.Framework
 
             // general options
             const float minSecondsPerMinute = 0.1f;
-            const float maxSecondsPerMinute = 15f;
+            const float maxSecondsPerMinute = 1.5f;
             api.AddSectionTitle(manifest, I18n.Config_GeneralOptions);
             api.AddBoolOption(
                 manifest,
