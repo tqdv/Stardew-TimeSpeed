@@ -147,7 +147,13 @@ namespace TimeSpeed
                 return;
 
             if (Config.Keys.FreezeTime.JustPressed())
-                ToggleFreeze();
+            {
+                KeyboardState state = Keyboard.GetState();
+                if (state.IsKeyDown(Keys.LeftShift))
+                    ResetFreeze();
+                else
+                    ToggleFreeze();
+            }
             else if (Config.Keys.IncreaseTickInterval.JustPressed())
                 ChangeClockInterval(GetKeyboardModifiedAmount());
             else if (Config.Keys.DecreaseTickInterval.JustPressed())
@@ -286,6 +292,14 @@ namespace TimeSpeed
             }
         }
 
+        /// <summary>Clear the manual freeze override, and let default settings apply.</summary>
+        private void ResetFreeze()
+        {
+            ManualFreeze = null;
+            UpdateSettingsForLocation(Game1.currentLocation);
+            Monitor.Log($"Time flow is reset at \"{Game1.currentLocation}\".", LogLevel.Info);
+        }
+
         /// <summary>Update the time freeze settings for the given time of day.</summary>
         private void UpdateFreezeForTime(int timeOfDay)
         {
@@ -353,7 +367,7 @@ namespace TimeSpeed
             AdjustTime = Config.ShouldScale(season, dayOfMonth);
         }
 
-        /// <summary>TODO.</summary>
+        /// <summary>Get the amount of time to add or remove from the clock interval, taking into account held modifiers.</summary>
         private int GetKeyboardModifiedAmount() {
             int change = 1000;
 
