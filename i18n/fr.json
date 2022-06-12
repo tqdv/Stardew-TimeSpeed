@@ -24,7 +24,7 @@
     "config.general-options": "Options générales",
     "config.enable-on-festival-days.name": "Activer les jours de fête",
     "config.enable-on-festival-days.desc": "Si l'écoulement du temps doit être modifiée les jours de fête.",
-    "config.location-notify.name": "Afficher l'état du temps lors des transferts",
+    "config.location-notify.name": "Rappeler l'état sur transfert",
     "config.location-notify.desc": "Si un message à propos des paramètres du temps doit être affiché lorsque tu arrives dans un nouvel endroit.",
 
     // seconds per minute section
